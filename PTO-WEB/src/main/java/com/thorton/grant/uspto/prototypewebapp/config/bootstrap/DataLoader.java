@@ -24,10 +24,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent>         {
@@ -394,7 +394,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent>   
 
 
         // start scheduler for job that runs nightly to udpate filing statuses and check expiration dates for actions ...etc
-
+        Timer timer = new Timer();
+        FilingStatusUpdateTask filingStatusUpdateTask = new FilingStatusUpdateTask();
+        Date date = new Date();
+        timer.schedule(filingStatusUpdateTask, Long.valueOf(15000), Long.valueOf(15000));
 
     }
 

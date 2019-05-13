@@ -19,6 +19,29 @@ public class FilingStatusUpdateTask extends TimerTask {
     @Override
     public void run() {
 
+        System.out.println("run scheduled jobs.");
+
+
+
+    }
+
+
+
+    // check submitted date + interval
+    private void checkBlackOutPeriod(){
+
+    }
+
+
+
+    // check submitted date + interval + office action interval
+    private void checkOfficeActionPeriod1(){
+
+    }
+
+
+    private void checkOfficeActionPeriod2(){
+
     }
 
 
