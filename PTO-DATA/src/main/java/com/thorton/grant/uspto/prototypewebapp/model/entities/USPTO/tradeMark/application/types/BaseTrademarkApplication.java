@@ -2,6 +2,7 @@ package com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.a
 
 
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions.OfficeActions;
+import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions.Petition;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.participants.Lawyer;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.participants.Owner;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.assets.GSClassCategory;
@@ -128,6 +129,13 @@ public class BaseTrademarkApplication  {
     @Nullable
     private Set<OfficeActions> actions;
     ////////////////////////////////////////////////////////
+
+    @OneToMany(cascade =  CascadeType.ALL)
+    @Nullable
+    private Set<Petition>  petitions;
+
+
+
 
 
     private String ownerType;
@@ -386,6 +394,41 @@ public class BaseTrademarkApplication  {
 
 
 
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // initial black out period date
+    // initial black out period interval
+
+    // user can file petitions to ammend at this time frame
+    // no office actions can be issued at this time
+    // status : "Black Out"
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // first office action window start date
+    // first office action wiondow interval
+
+    // this is a time when an office action can be initated by the system or our lawyers
+    // we will automatically issue an abandoned status based on our validation class
+    // which will return abandoned every instance for now. we can update the logic of this module
+    // later when that becomes clear
+
+    // status "Office Action 1"
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // we will not response to any office action (As that module is not built)
+    // we will simply allow the office action to expire and allow user to file a petition to revive
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
 
     public boolean isAttorneyPoolEmpty() {
 
@@ -566,6 +609,19 @@ public class BaseTrademarkApplication  {
             }
         }
         return action;
+    }
+
+
+    public Petition findPetitionById(String id){
+        Petition petition = null;
+        for(Iterator<Petition> iter = petitions.iterator(); iter.hasNext(); ) {
+            Petition current = iter.next();
+
+            if(current.getId().equals(id)){
+                petition = current;
+            }
+        }
+        return petition;
     }
 
     public boolean isAttorneyFiling() {
@@ -1774,6 +1830,15 @@ public class BaseTrademarkApplication  {
 
     public void setDeclarationAll(boolean declarationAll) {
         this.declarationAll = declarationAll;
+    }
+
+    @Nullable
+    public Set<Petition> getPetitions() {
+        return petitions;
+    }
+
+    public void setPetitions(@Nullable Set<Petition> petitions) {
+        this.petitions = petitions;
     }
 
     @Override

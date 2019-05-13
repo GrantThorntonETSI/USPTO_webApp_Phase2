@@ -276,8 +276,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent>   
         petition.setRecievedOfficeActionSet(false);
         petitionService.save(petition);
 
-        officeActions.setPetition(petition);
-        petition.setOfficeAction(officeActions);
+        //officeActions.setPetition(petition);
+        //petition.setOfficeAction(officeActions);
 
 
 
@@ -389,6 +389,11 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent>   
         PTOUser Serra = createUser("Serra", "Trinh", "333 Carlyle ave", "Alexandria", "VA", "22222", "United States of America", "333-333-3333", "serra.trinh@us.gt.com","12345",managedContactsAttorneys, managedContactsOwners);
 
 
+
+
+
+
+        // start scheduler for job that runs nightly to udpate filing statuses and check expiration dates for actions ...etc
 
 
     }

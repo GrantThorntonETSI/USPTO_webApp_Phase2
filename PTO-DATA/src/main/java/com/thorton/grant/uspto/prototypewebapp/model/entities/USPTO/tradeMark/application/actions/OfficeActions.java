@@ -54,8 +54,6 @@ public class OfficeActions extends BaseEntity {
 
 
 
-    @OneToOne
-    private Petition  petition;
 
 
     public String getOfficeAction() {
@@ -82,13 +80,7 @@ public class OfficeActions extends BaseEntity {
         this.trademarkApplication = trademarkApplication;
     }
 
-    public Petition getPetition() {
-        return petition;
-    }
 
-    public void setPetition(Petition petition) {
-        this.petition = petition;
-    }
 
     public Date getDueDate() {
         return dueDate;

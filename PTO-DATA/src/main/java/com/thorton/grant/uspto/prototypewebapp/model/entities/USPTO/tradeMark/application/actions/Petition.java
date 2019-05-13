@@ -1,8 +1,10 @@
 package com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions;
 
+import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.types.BaseTrademarkApplication;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.base.BaseEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
@@ -15,8 +17,10 @@ public class Petition extends BaseEntity {
 
 
 
-         @OneToOne
-         private OfficeActions officeAction;
+
+
+        @ManyToOne
+        private BaseTrademarkApplication trademarkApplication;
 
          // check box
          private boolean claimDelayUnintentional;
@@ -71,13 +75,6 @@ public class Petition extends BaseEntity {
 
 
 
-    public OfficeActions getOfficeAction() {
-        return officeAction;
-    }
-
-    public void setOfficeAction(OfficeActions officeAction) {
-        this.officeAction = officeAction;
-    }
 
     public boolean isClaimDelayUnintentional() {
         return claimDelayUnintentional;
@@ -223,21 +220,7 @@ public class Petition extends BaseEntity {
         this.responseText = responseText;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Petition petition = (Petition) o;
-        return claimDelayUnintentional == petition.claimDelayUnintentional &&
-                recievedOfficeAction == petition.recievedOfficeAction &&
-                recievedOfficeActionSet == petition.recievedOfficeActionSet &&
-                Objects.equals(officeAction, petition.officeAction);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(officeAction, claimDelayUnintentional, recievedOfficeAction, recievedOfficeActionSet);
-    }
 
 
 }

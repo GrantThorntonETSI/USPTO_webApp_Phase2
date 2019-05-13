@@ -14,6 +14,7 @@ import com.thorton.grant.uspto.prototypewebapp.model.entities.DTO.application.fo
 import com.thorton.grant.uspto.prototypewebapp.model.entities.DTO.application.form.NewOwnerContactFormDTO;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.DTO.application.form.partnerDTO;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions.OfficeActions;
+import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions.Petition;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.participants.Lawyer;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.participants.Owner;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.types.BaseTrademarkApplication;
@@ -3826,7 +3827,7 @@ public class ApplicationFlowController {
 
         OfficeActions action = baseTrademarkApplication.findOfficeActionById(actionID);
 
-
+        Petition petition = baseTrademarkApplication.findPetitionById(actionID);
 
         //////////////////////////////////////////////////////
         // this is set back to null upon verification check
@@ -3841,9 +3842,9 @@ public class ApplicationFlowController {
         model.addAttribute("action",action);
         model.addAttribute("baseTrademarkApplication", baseTrademarkApplication);
 
-        model.addAttribute("petitionSignatureType", action.getPetition().getPetitionSignatureMethod());
+        model.addAttribute("petitionSignatureType", petition.getPetitionSignatureMethod());
 
-        model.addAttribute("responseSignatureType", action.getPetition().getResponseSignatureMethod());
+        model.addAttribute("responseSignatureType", petition.getResponseSignatureMethod());
 
 
 
