@@ -395,8 +395,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent>   
 
         // start scheduler for job that runs nightly to udpate filing statuses and check expiration dates for actions ...etc
         Timer timer = new Timer();
-        FilingStatusUpdateTask filingStatusUpdateTask = new FilingStatusUpdateTask();
+        FilingStatusUpdateTask filingStatusUpdateTask = new FilingStatusUpdateTask(serviceBeanFactory);
         Date date = new Date();
+
+        // in production. duration will be set to 30 minutes, and delay will be set to 23.5 hours
         timer.schedule(filingStatusUpdateTask, Long.valueOf(15000), Long.valueOf(15000));
 
     }
