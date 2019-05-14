@@ -424,11 +424,36 @@ public class BaseTrademarkApplication  {
 
 
 
+    //////////////////////////////////////////////////////////////////////////
+    // date fields and flags to support petitions and amendments workflow
+    // with time expiration
+    // filing application statuses should be well defined
+    //////////////////////////////////////////////////////////////////////////
+
+    private Date applicationFilingDate;
 
 
 
+    private boolean claimDidNotRecieveOfficeAction; // this can only be claimed once. once it is set to true, you can not make that claim any more  // this is actually a filed that needs to be on the filing object
+
+    ///////////////////////////////////////////////////////////////
+
+    public boolean isClaimDidNotRecieveOfficeAction() {
+        return claimDidNotRecieveOfficeAction;
+    }
+
+    public void setClaimDidNotRecieveOfficeAction(boolean claimDidNotRecieveOfficeAction) {
+        this.claimDidNotRecieveOfficeAction = claimDidNotRecieveOfficeAction;
+    }
 
 
+    public Date getApplicationFilingDate() {
+        return applicationFilingDate;
+    }
+
+    public void setApplicationFilingDate(Date applicationFilingDate) {
+        this.applicationFilingDate = applicationFilingDate;
+    }
 
     public boolean isAttorneyPoolEmpty() {
 

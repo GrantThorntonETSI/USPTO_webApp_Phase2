@@ -19,6 +19,21 @@ public class FilingStatusUpdateTask extends TimerTask {
 
     // create variables
 
+    private long blackOutPeriodDuration;  // 2 months
+
+
+    private long firstOfficeActionDuration;  // 6 month
+
+
+
+    private long durationToRevivieWithoutClaim; // 2 month
+
+    private long durationToReviveWithClaim;   // 6 month
+
+
+
+
+
 
 
     // add date fields to the filings object
@@ -64,5 +79,35 @@ public class FilingStatusUpdateTask extends TimerTask {
     }
 
 
+    public long getBlackOutPeriodDuration() {
+        return blackOutPeriodDuration;
+    }
 
+    public void setBlackOutPeriodDuration(long blackOutPeriodDuration) {
+        this.blackOutPeriodDuration = blackOutPeriodDuration;
+    }
+
+    public long getFirstOfficeActionDuration() {
+        return firstOfficeActionDuration;
+    }
+
+    public void setFirstOfficeActionDuration(long firstOfficeActionDuration) {
+        this.firstOfficeActionDuration = firstOfficeActionDuration;
+    }
+
+    public long getDurationToRevivieWithoutClaim() {
+        return durationToRevivieWithoutClaim;
+    }
+
+    public void setDurationToRevivieWithoutClaim(long durationToRevivieWithoutClaim) {
+        this.durationToRevivieWithoutClaim = durationToRevivieWithoutClaim;
+    }
+
+    public long getDurationToReviveWithClaim() {
+        return durationToReviveWithClaim;
+    }
+
+    public void setDurationToReviveWithClaim(long durationToReviveWithClaim) {
+        this.durationToReviveWithClaim = durationToReviveWithClaim;
+    }
 }
