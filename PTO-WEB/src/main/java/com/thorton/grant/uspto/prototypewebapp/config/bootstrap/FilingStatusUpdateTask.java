@@ -1,17 +1,26 @@
 package com.thorton.grant.uspto.prototypewebapp.config.bootstrap;
 
 import com.thorton.grant.uspto.prototypewebapp.factories.ServiceBeanFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.TimerTask;
+
+
+@Configuration
+@PropertySource("classpath:server-host-AWS-prod1.properties")
 
 public class FilingStatusUpdateTask extends TimerTask {
 
 
 
-     private  final ServiceBeanFactory serviceBeanFactory;
+    private  final ServiceBeanFactory serviceBeanFactory;
 
     public FilingStatusUpdateTask(ServiceBeanFactory serviceBeanFactory) {
         this.serviceBeanFactory = serviceBeanFactory;
+
+        System.out.println("task consturctor called.");
     }
 
     // read properties from property file
@@ -19,15 +28,21 @@ public class FilingStatusUpdateTask extends TimerTask {
 
     // create variables
 
+
+
+
+    // note. these numbers will be in days
+    @Value("${uspto.blackoutPeriod}")
     private long blackOutPeriodDuration;  // 2 months
 
-
+    @Value("${uspto.officeaction1}")
     private long firstOfficeActionDuration;  // 6 month
 
 
-
+    @Value("${uspto.officeaction2b}")
     private long durationToRevivieWithoutClaim; // 2 month
 
+    @Value("${uspto.officeaction2}")
     private long durationToReviveWithClaim;   // 6 month
 
 
@@ -40,6 +55,8 @@ public class FilingStatusUpdateTask extends TimerTask {
 
     @Override
     public void run() {
+
+
 
         System.out.println("run scheduled jobs.");
 
@@ -59,7 +76,7 @@ public class FilingStatusUpdateTask extends TimerTask {
 
 
         // loop through all filings
-        System.out.println("checking black out period status for filings");
+        System.out.println("checking black out period status for filings : "+blackOutPeriodDuration);
 
 
     }
@@ -69,13 +86,13 @@ public class FilingStatusUpdateTask extends TimerTask {
     // check submitted date + interval + office action interval
     private void checkOfficeActionPeriod1(){
 
-        System.out.println("checking Office Action period 1 status for filings");
+        System.out.println("checking Office Action period 1 status for filings : "+firstOfficeActionDuration);
 
     }
 
 
     private void checkOfficeActionPeriod2(){
-        System.out.println("checking Office Action period 2 status for filings");
+        System.out.println("checking Office Action period 2 status for filings : "+durationToReviveWithClaim);
     }
 
 
