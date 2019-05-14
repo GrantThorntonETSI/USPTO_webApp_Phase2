@@ -2,13 +2,14 @@ package com.thorton.grant.uspto.prototypewebapp.config.bootstrap;
 
 import com.thorton.grant.uspto.prototypewebapp.factories.ServiceBeanFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.TimerTask;
 
 
-@Configuration
+@Component
 @PropertySource("classpath:server-host-AWS-prod1.properties")
 
 public class FilingStatusUpdateTask extends TimerTask {
@@ -33,21 +34,32 @@ public class FilingStatusUpdateTask extends TimerTask {
 
     // note. these numbers will be in days
     @Value("${uspto.blackoutPeriod}")
-    private long blackOutPeriodDuration;  // 2 months
+    private long blackOutPeriodDuration = 5*60*1000;  // 5 mins
 
     @Value("${uspto.officeaction1}")
-    private long firstOfficeActionDuration;  // 6 month
+    private long firstOfficeActionDuration = 5*60*1000;;  // 5 mins
 
 
     @Value("${uspto.officeaction2b}")
-    private long durationToRevivieWithoutClaim; // 2 month
+    private long durationToRevivieWithoutClaim = 2*60*1000;; // 2 minsh
 
     @Value("${uspto.officeaction2}")
-    private long durationToReviveWithClaim;   // 6 month
+    private long durationToReviveWithClaim = 5*60*1000;;   // 5 mins
 
 
 
+    @PostConstruct
+    public void init() {
 
+        System.out.println("================== " + "post construct check" + "================== ");
+
+
+        System.out.println("================== " + blackOutPeriodDuration + "================== ");
+
+        System.out.println("================== " + firstOfficeActionDuration + "================== ");
+
+        System.out.println("================== " + durationToReviveWithClaim + "================== ");
+    }
 
 
 
