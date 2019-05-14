@@ -210,8 +210,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent>   
 
         trademarkApplication.getTradeMark().setTrademarkImagePath("/files/"+"standardcharacter_alt2.gif");
 
-        trademarkApplication.getTradeMark().setTrademarkBWImagePath("/files/"+"standardcharacter_alt2.gif");
-        //trademarkApplication.getTradeMark().setBaseStoragePath("C:\\images\\attorney");
+        //trademarkApplication.getTradeMark().setTrademarkBWImagePath("/files/"+"standardcharacter_alt2.gif");
+        trademarkApplication.getTradeMark().setBaseStoragePath("C:\\images\\attorney");
         trademarkApplication.getTradeMark().setBaseStoragePath("/home/zhangl/images/");
         trademarkApplication.getTradeMark().setStandardCharacterMark(false);
         trademarkApplication.getTradeMark().setColorClaimSet(true);
@@ -404,7 +404,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent>   
         Date date = new Date();
 
         // in production. duration will be set to 30 minutes, and delay will be set to 23.5 hours
-        timer.schedule(filingStatusUpdateTask, Long.valueOf(15000), Long.valueOf(15000));
+        timer.schedule(filingStatusUpdateTask, Long.valueOf(60000*5), Long.valueOf(60000*3));
 
     }
 

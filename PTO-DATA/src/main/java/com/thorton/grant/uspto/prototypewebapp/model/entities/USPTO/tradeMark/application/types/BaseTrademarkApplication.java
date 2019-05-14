@@ -1866,47 +1866,6 @@ public class BaseTrademarkApplication  {
         this.petitions = petitions;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BaseTrademarkApplication that = (BaseTrademarkApplication) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(trademarkName, that.trademarkName) &&
-                Objects.equals(applicationInternalID, that.applicationInternalID) &&
-                Objects.equals(ownerEmail, that.ownerEmail) &&
-                Objects.equals(availableLawyers, that.availableLawyers) &&
-                Objects.equals(ownerType, that.ownerType) &&
-                Objects.equals(ownerSubType, that.ownerSubType);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, trademarkName, applicationInternalID, ownerEmail, availableLawyers, ownerType, ownerSubType);
-    }
-
-    @Override
-    public String toString() {
-        return "BaseTrademarkApplication{" +
-                "id=" + id +
-                ", trademarkName='" + trademarkName + '\'' +
-                ", applicationInternalID='" + applicationInternalID + '\'' +
-                ", isAttorneySet=" + isAttorneySet +
-                ", isAttorneyFiling=" + isAttorneyFiling +
-                ", isForeignEnityFiling=" + isForeignEnityFiling +
-                ", currentStage='" + currentStage + '\'' +
-                ", lastViewModel='" + lastViewModel + '\'' +
-                ", ownerEmail='" + ownerEmail + '\'' +
-                ", ptoUser=" + ptoUser +
-                ", primaryLawyer=" + primaryLawyer +
-                ", availableLawyers=" + availableLawyers +
-                ", owners=" + owners +
-                ", tradeMark=" + tradeMark +
-                ", actions=" + actions +
-                ", ownerType='" + ownerType + '\'' +
-                ", ownerSubType='" + ownerSubType + '\'' +
-                '}';
-    }
 
     public Set<Integer> getUniqueClassNumberforGS(){
 

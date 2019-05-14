@@ -1,11 +1,16 @@
 package com.thorton.grant.uspto.prototypewebapp.config.bootstrap;
 
 import com.thorton.grant.uspto.prototypewebapp.factories.ServiceBeanFactory;
+import com.thorton.grant.uspto.prototypewebapp.interfaces.USPTO.tradeMark.application.types.BaseTradeMarkApplicationService;
+import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.participants.Lawyer;
+import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.types.BaseTrademarkApplication;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.TimerTask;
 
 
@@ -87,9 +92,30 @@ public class FilingStatusUpdateTask extends TimerTask {
     private void checkBlackOutPeriod(){
 
 
-        // loop through all filings
+        // loop through all filings and output filing date value in milli seconds
         System.out.println("checking black out period status for filings : "+blackOutPeriodDuration);
 
+        BaseTradeMarkApplicationService baseTradeMarkApplicationService = serviceBeanFactory.getBaseTradeMarkApplicationService();
+
+
+        for(Iterator<BaseTrademarkApplication> iter = baseTradeMarkApplicationService.findAll().iterator(); iter.hasNext(); ) {
+            BaseTrademarkApplication current = iter.next();
+
+            if(current.getApplicationFilingDate() != null){
+                // check that date + duration against current time
+              if((current.getApplicationFilingDate().getTime() + blackOutPeriodDuration) >= new Date().getTime()){
+
+                  System.out.println("Filing has expired from the black out period");
+
+              }
+              else{
+                  System.out.println("filing is still in the black out period");
+              }
+            }
+            else{
+                System.out.println("Filing is not Submitted yet.");
+            }
+        }
 
     }
 
