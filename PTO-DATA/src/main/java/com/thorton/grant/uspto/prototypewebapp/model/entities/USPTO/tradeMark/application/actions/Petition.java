@@ -13,14 +13,12 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "petiton")
-public class Petition extends BaseEntity {
+public class Petition extends OfficeActions {
 
 
 
 
 
-        @ManyToOne
-        private BaseTrademarkApplication trademarkApplication;
 
          // check box
          private boolean claimDelayUnintentional;
@@ -71,6 +69,9 @@ public class Petition extends BaseEntity {
         // Response text field
 
         private String responseText;
+
+
+        private boolean activePetition;
 
 
 
@@ -220,7 +221,16 @@ public class Petition extends BaseEntity {
         this.responseText = responseText;
     }
 
+    public boolean isActivePetition() {
+        return activePetition;
+    }
 
+    public void setActivePetition(boolean activePetition) {
+        this.activePetition = activePetition;
+    }
 
+    public String getPetitionsLink(){
+        return "/petitions/revAbandoned/"+getInternalID()+"/?trademarkID="+getTrademarkApplication().getApplicationInternalID();
+    }
 
 }

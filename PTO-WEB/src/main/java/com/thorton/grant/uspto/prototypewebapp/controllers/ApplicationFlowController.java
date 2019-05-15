@@ -3810,8 +3810,8 @@ public class ApplicationFlowController {
 
 
 
-    @RequestMapping({"/petitions/revAbandoned/{actionID}"})
-    public String reviveAbandonedFiling( Model model, @PathVariable String actionID ,@RequestParam("trademarkID") String trademarkInternalID){
+    @RequestMapping({"/petitions/revAbandoned/{petitionID}"})
+    public String reviveAbandonedFiling( Model model, @PathVariable String petitionID ,@RequestParam("trademarkID") String trademarkInternalID){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -3825,9 +3825,9 @@ public class ApplicationFlowController {
         BaseTrademarkApplication baseTrademarkApplication = baseTradeMarkApplicationService.findByInternalID(trademarkInternalID);
 
 
-        OfficeActions action = baseTrademarkApplication.findOfficeActionById(actionID);
+        //OfficeActions action = baseTrademarkApplication.findOfficeActionById(actionID);
 
-        Petition petition = baseTrademarkApplication.findPetitionById(actionID);
+        Petition petition = baseTrademarkApplication.findPetitionById(petitionID);
 
         //////////////////////////////////////////////////////
         // this is set back to null upon verification check
@@ -3839,7 +3839,8 @@ public class ApplicationFlowController {
         model.addAttribute("user", ptoUser);
         model.addAttribute("account",credentials);
 
-        model.addAttribute("action",action);
+        model.addAttribute("petition", petition);
+
         model.addAttribute("baseTrademarkApplication", baseTrademarkApplication);
 
         model.addAttribute("petitionSignatureType", petition.getPetitionSignatureMethod());

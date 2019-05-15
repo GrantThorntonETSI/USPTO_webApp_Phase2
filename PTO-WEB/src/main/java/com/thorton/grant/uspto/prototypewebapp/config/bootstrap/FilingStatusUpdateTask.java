@@ -3,6 +3,7 @@ package com.thorton.grant.uspto.prototypewebapp.config.bootstrap;
 import com.thorton.grant.uspto.prototypewebapp.factories.ServiceBeanFactory;
 import com.thorton.grant.uspto.prototypewebapp.interfaces.USPTO.tradeMark.application.types.BaseTradeMarkApplicationService;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions.OfficeActions;
+import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions.Petition;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.participants.Lawyer;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.types.BaseTrademarkApplication;
 import org.springframework.beans.factory.annotation.Value;
@@ -119,8 +120,10 @@ public class FilingStatusUpdateTask extends TimerTask {
                   officeActions.setParentSerialNumber(current.getTrademarkName());
 
                   officeActions.setOfficeActionCode("Missing SOU");
+                  officeActions.setActiveAction(true);
                   current.addOfficeAction(officeActions);
                   officeActions.setTrademarkApplication(current);
+
 
 
 
@@ -159,7 +162,33 @@ public class FilingStatusUpdateTask extends TimerTask {
 
                     System.out.println("Filing has expired from the office action period");
                     current.setFilingStatus("Abandoned");
+                    // remove office action ..or set it to inactive
+                    // so on the dashboard. we only show actions that are active
+                    //
+                    // do the same thing. create petition object and attach it to the filing
+                    Petition petition = new Petition();
+                    petition.setParentMarkImagePath(current.getTradeMark().getTrademarkImagePath());
+                    petition.setParentMarkOwnerName(current.getPrimaryOwner().getOwnerDisplayname());
+                    petition.setParentSerialNumber(current.getTrademarkName());
+
+                    petition.setOfficeActionCode("Abandoned");
+                    petition.setActivePetition(true);
+                    current.addPetition(petition);
+                    petition.setTrademarkApplication(current);
+
+
+                    // go back and set any active actions to in-active
+                    for(Iterator<OfficeActions> iter2 = current.getOfficeActions().iterator(); iter2.hasNext(); ) {
+                        OfficeActions current2 = iter2.next();
+                        current2.setActiveAction(false);
+
+                    }
+
+
+
+
                     baseTradeMarkApplicationService.save(current);
+
 
                 }
                 else{

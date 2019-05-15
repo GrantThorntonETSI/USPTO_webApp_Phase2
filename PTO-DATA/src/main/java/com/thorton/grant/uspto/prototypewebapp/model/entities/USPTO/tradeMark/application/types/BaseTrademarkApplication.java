@@ -620,6 +620,13 @@ public class BaseTrademarkApplication  {
     }
 
 
+    public Petition addPetition( Petition petition){
+        this.petitions.add(petition);
+
+        return petition;
+    }
+
+
 
     public OfficeActions findOfficeActionById(String id){
         OfficeActions action = null;
@@ -639,7 +646,7 @@ public class BaseTrademarkApplication  {
         for(Iterator<Petition> iter = petitions.iterator(); iter.hasNext(); ) {
             Petition current = iter.next();
 
-            if(current.getId().equals(id)){
+            if(current.getInternalID().equals(id)){
                 petition = current;
             }
         }
