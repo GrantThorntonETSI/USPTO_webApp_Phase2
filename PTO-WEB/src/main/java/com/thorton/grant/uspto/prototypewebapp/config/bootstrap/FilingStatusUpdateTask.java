@@ -8,6 +8,7 @@ import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.ap
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.Date;
@@ -40,17 +41,17 @@ public class FilingStatusUpdateTask extends TimerTask {
 
     // note. these numbers will be in days
     @Value("${uspto.blackoutPeriod}")
-    private long blackOutPeriodDuration = 5*60*1000;  // 5 mins
+    private long blackOutPeriodDuration = 1*60*1000;  // 5 mins
 
     @Value("${uspto.officeaction1}")
-    private long firstOfficeActionDuration = 5*60*1000;;  // 5 mins
+    private long firstOfficeActionDuration = 1*60*1000;  // 5 mins
 
 
     @Value("${uspto.officeaction2b}")
-    private long durationToRevivieWithoutClaim = 20*60*1000;; // 2 minsh
+    private long durationToRevivieWithoutClaim = 1*60*1000; // 2 minsh
 
     @Value("${uspto.officeaction2}")
-    private long durationToReviveWithClaim = 60*60*1000;;   // 5 mins
+    private long durationToReviveWithClaim = 1*60*1000;   // 5 mins
 
 
 
@@ -90,7 +91,8 @@ public class FilingStatusUpdateTask extends TimerTask {
 
 
     // check submitted date + interval
-    private void checkBlackOutPeriod(){
+    @Transactional
+   public void checkBlackOutPeriod(){
 
 
         // loop through all filings and output filing date value in milli seconds
@@ -141,7 +143,7 @@ public class FilingStatusUpdateTask extends TimerTask {
 
 
     // check submitted date + interval + office action interval
-    private void checkOfficeActionPeriod1(){
+    public void checkOfficeActionPeriod1(){
 
         System.out.println("checking Office Action period 1 status for filings : "+firstOfficeActionDuration);
 
@@ -173,7 +175,7 @@ public class FilingStatusUpdateTask extends TimerTask {
     }
 
 
-    private void checkOfficeActionPeriod2(){
+    public void checkOfficeActionPeriod2(){
         System.out.println("checking Office Action period 2 status for filings : "+durationToReviveWithClaim);
     }
 

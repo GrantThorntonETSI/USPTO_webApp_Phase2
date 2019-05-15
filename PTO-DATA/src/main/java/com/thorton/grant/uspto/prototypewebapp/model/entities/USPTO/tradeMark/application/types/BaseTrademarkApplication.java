@@ -26,7 +26,7 @@ public class BaseTrademarkApplication  {
     public BaseTrademarkApplication() {
 
         availableLawyers = new HashSet<>();
-        actions = new HashSet<>();
+
         owners = new HashSet<>();
         officeActions = new HashSet<>();
 
@@ -109,11 +109,13 @@ public class BaseTrademarkApplication  {
 
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
     @Nullable
     private Set<OfficeActions> officeActions; // default owner   PTO user
 
-
+    @OneToMany(fetch = FetchType.EAGER ,cascade =  CascadeType.ALL)
+    @Nullable
+    private Set<Petition>  petitions;
     /////////////////////////////////////////////////////////////////////
     // stage 2
     /////////////////////////////////////////////////////////////////////
@@ -125,14 +127,9 @@ public class BaseTrademarkApplication  {
 
 
 
-    @OneToMany(cascade =  CascadeType.ALL)
-    @Nullable
-    private Set<OfficeActions> actions;
-    ////////////////////////////////////////////////////////
 
-    @OneToMany(cascade =  CascadeType.ALL)
-    @Nullable
-    private Set<Petition>  petitions;
+
+
 
 
 
@@ -674,14 +671,6 @@ public class BaseTrademarkApplication  {
         this.tradeMark = tradeMark;
     }
 
-
-    public Set<OfficeActions> getActions() {
-        return actions;
-    }
-
-    public void setActions(@Nullable Set<OfficeActions> actions) {
-        this.actions = actions;
-    }
 
 
 
