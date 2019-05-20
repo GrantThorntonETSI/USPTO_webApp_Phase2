@@ -2368,6 +2368,7 @@ public class ApplicationObjectCreationController {
             baseTrademarkApplication.setRecieptFilePath(recieptFilePath);
             baseTrademarkApplication.setFilingStatus("Submitted");
             baseTradeMarkApplicationService.save(baseTrademarkApplication);
+            baseTrademarkApplication.setLastViewModel("application/review/index");
 
         }
 
