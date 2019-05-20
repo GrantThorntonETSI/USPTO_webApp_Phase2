@@ -117,6 +117,51 @@ $(document).ready(function(){
 	});
 	//END initialize Dashboard datable one
 
+
+	//
+	//START initialize Response Amendment datable
+	var tablethree = $('#responseamendtable').DataTable({
+		"fnDrawCallback": function( oSettings ) {
+		},
+		'sDom': 't',
+		//"language": {
+		//"search": "<span class='glyphicon glyphicon-search' aria-hidden='true'></span><span class='sr-only'>search</span>",
+//			"lengthMenu": "<span class='glyphicon glyphicon-filter' aria-hidden='true'></span><span class='sr-only'>select number of entries to display</span> <select>"+
+//			  '<option value="10">10</option>'+
+//			  '<option value="25">25</option>'+
+//			  '<option value="50">50</option>'+
+//			  '<option value="100">100</option>'+
+//			  '<option value="-1">All</option>'+
+//			  '</select>'
+		//},
+
+		'autoWidth': false,
+		responsive: {
+			breakpoints: [
+				{ name: 'desktop', width: Infinity },
+				{ name: 'tablet',  width: 1024 },
+				{ name: 'fablet',  width: 768 },
+				{ name: 'phone',   width: 480 }
+			]
+		},
+		'columns': [
+			{ 'width': '4%' },
+			{ 'width': '30%' },
+			{ 'width': '36%' },
+			{ 'width': '30%' },
+		],
+		'columnDefs': [
+			{ className: 'centertxt', 'targets': [ 0,1,2 ] },
+			{ orderable: false},
+			{ className: 'select-checkbox'},
+			{ targets:   0}
+		],
+		select: {
+			style:    'multi',
+			selector: 'tr td:nth-child(1) span'
+		},
+		order: [[ 1, 'asc' ]]
+	});
 	//START initialize Dashboard datable two
 	var tabletwo = $('#dashboardtabletwo').DataTable({
 		"fnDrawCallback": function( oSettings ) {
@@ -205,6 +250,9 @@ $(document).ready(function(){
 		},
 		order: [[ 1, 'asc' ]]
 	});
+
+
+
 
 	//Dashboard datatables ellipsis menu tableone
     $("div.toolbar").html('<div class="dropdown"><button class="btn btn-xs dropdown-toggle" type="button" id="dropdownMenucolvis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical" role="img" aria-label="toggle columns visibility"></span></button><ul class="dropdown-menu" aria-labelledby="dropdownMenucolvis"><li class="dropdown-header">Toggle Columns</li><li><a class="toggle-vis" data-column="0"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Serial#</a></li><li><a class="toggle-vis" data-column="1"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Registration#</a></li><li><a class="toggle-vis" data-column="2"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Owner</a></li><li><a class="toggle-vis" data-column="3"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Status</a></li><li><a class="toggle-vis" data-column="4"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Mark</a></li></ul></div>');
