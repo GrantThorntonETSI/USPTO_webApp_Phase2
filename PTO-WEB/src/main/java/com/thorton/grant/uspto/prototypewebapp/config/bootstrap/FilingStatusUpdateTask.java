@@ -42,17 +42,17 @@ public class FilingStatusUpdateTask extends TimerTask {
 
     // note. these numbers will be in days
     @Value("${uspto.blackoutPeriod}")
-    private long blackOutPeriodDuration = 1*60*1000;  // 5 mins
+    private long blackOutPeriodDuration = 1*60*1000;  // 1 mins
 
     @Value("${uspto.officeaction1}")
-    private long firstOfficeActionDuration = 1*60*1000;  // 5 mins
+    private long firstOfficeActionDuration = 5*60*1000;  // 5 mins
 
 
     @Value("${uspto.officeaction2b}")
-    private long durationToRevivieWithoutClaim = 1*60*1000; // 2 minsh
+    private long durationToRevivieWithoutClaim = 1*60*1000; //1 minsh
 
     @Value("${uspto.officeaction2}")
-    private long durationToReviveWithClaim = 1*60*1000;   // 5 mins
+    private long durationToReviveWithClaim = 1*60*1000;   // 1 mins
 
 
 
@@ -110,19 +110,40 @@ public class FilingStatusUpdateTask extends TimerTask {
               if((current.getApplicationFilingDate().getTime() + blackOutPeriodDuration) < new Date().getTime()){
 
                   System.out.println("Filing has expired from the black out period");
-                  current.setFilingStatus("Office Action");
-                  baseTradeMarkApplicationService.save(current);
+                  current.setFilingStatus("Office action");
+                  //baseTradeMarkApplicationService.save(current);
 
-                  // create  an default office action object and attach it to filing
+
+                  // set relevant office actions
                   OfficeActions officeActions = new OfficeActions();
                   officeActions.setParentMarkImagePath(current.getTradeMark().getTrademarkImagePath());
                   officeActions.setParentMarkOwnerName(current.getPrimaryOwner().getOwnerDisplayname());
                   officeActions.setParentSerialNumber(current.getTrademarkName());
 
-                  officeActions.setOfficeActionCode("Missing SOU");
-                  officeActions.setActiveAction(true);
-                  current.addOfficeAction(officeActions);
-                  officeActions.setTrademarkApplication(current);
+                  if(current.getApplicationSignature() == null || current.getApplicationSignature().equals("")){
+                      officeActions.setOfficeActionCode("Missing signature");
+                      officeActions.setActiveAction(true);
+                      current.addOfficeAction(officeActions);
+                      officeActions.setTrademarkApplication(current);
+
+                  }
+                  else {
+
+                      if (current.getTradeMark().isStandardCharacterMark() || current.getTradeMark().getTrademarkDesignType().equals("Design with text")) {
+                          if (current.getTradeMark().getForeignLanguateTransliterationUSText() != null) {
+                              officeActions.setOfficeActionCode("Missing transliteration");
+                              officeActions.setActiveAction(true);
+                              current.addOfficeAction(officeActions);
+                              officeActions.setTrademarkApplication(current);
+                          }
+
+
+                      }
+                  }
+
+                  // create  an default office action object and attach it to filing
+
+
 
 
 
@@ -133,6 +154,14 @@ public class FilingStatusUpdateTask extends TimerTask {
               }
               else{
                   System.out.println("filing is still in the black out period");
+                  // check for possible office actions
+
+                  // 1. failed to provide declarations and signature
+
+
+                  // 2. missing transliteration for standard character and design with text
+
+
               }
             }
             else{
