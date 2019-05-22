@@ -92,7 +92,7 @@ public class FilingStatusUpdateTask extends TimerTask {
 
 
     // check submitted date + interval
-    @Transactional
+
    public void checkBlackOutPeriod(){
 
 
@@ -110,7 +110,7 @@ public class FilingStatusUpdateTask extends TimerTask {
               if((current.getApplicationFilingDate().getTime() + blackOutPeriodDuration) < new Date().getTime()){
 
                   System.out.println("Filing has expired from the black out period");
-                  current.setFilingStatus("Office action");
+                  current.setFilingStatus("Office Action");
                   //baseTradeMarkApplicationService.save(current);
 
 

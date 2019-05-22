@@ -3356,20 +3356,20 @@ public class ApplicationFlowController {
 
             if(baseTrademarkApplication.getPrimaryLawyer().getBarJurisdiction() == null){
                 missedTEAsFields.add("Attorney bar jurisdiction");
-                returnLink ="../../application/AttorneySet2/?trademarkID=";
+                returnLink ="../../application/AttorneySet/?trademarkID=";
             }
             if(baseTrademarkApplication.getPrimaryLawyer().getMembershipNumber() == null){
                 missedTEAsFields.add("Attorney bar membership number");
-                returnLink ="../../application/AttorneySet2/?trademarkID=";
+                returnLink ="../../application/AttorneySet/?trademarkID=";
             }
             if(baseTrademarkApplication.getPrimaryLawyer().getBarAdmissionDate() == null){
                 missedTEAsFields.add("Attorney bar membership admission date");
-                returnLink ="../../application/AttorneySet2/?trademarkID=";
+                returnLink ="../../application/AttorneySet/?trademarkID=";
             }
 
             if(baseTrademarkApplication.getPrimaryLawyer().getBarCertificateImageKey() == null){
                 missedTEAsFields.add("Attorney bar membership certificate");
-                returnLink ="../../application/AttorneySet2/?trademarkID=";
+                returnLink ="../../application/AttorneySet/?trademarkID=";
             }
 
 
@@ -3430,26 +3430,14 @@ public class ApplicationFlowController {
 
         if(missedTEAsFields.size() == 0){
             returnLink ="../../mark/designWithTextDetails/?trademarkID=";
-        }
-
-
-
-        if(baseTrademarkApplication.getTradeMark().getTrademarkDesignType().equals("Standard Character")){
-            returnLink ="../../mark/standard/?trademarkID=";
-        }
-
-/*
-        if(baseTrademarkApplication.getTradeMark().getTrademarkDesignType().equals("Standard Character") == true){
-
-
-            if(baseTrademarkApplication.getTradeMark().getMarkLiteral() == null){
-                missedTEAsFields.add("Mark literal");
-
+            if(baseTrademarkApplication.getTradeMark().getTrademarkDesignType().equals("Standard Character")){
+                returnLink ="../../mark/standard/?trademarkID=";
             }
-
-
         }
-*/
+
+
+
+
 
 
         if(baseTrademarkApplication.getTradeMark().getTrademarkDesignType().equals("Standard Character") == false){

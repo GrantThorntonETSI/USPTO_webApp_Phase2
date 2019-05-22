@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/efilePetitionsFragment :: layout (~{::body},'user')}" xmlns="http://www.w3.org/1999/html">
+<head >
+    <meta charset="UTF-8">
+    <title>Goods and Services Review</title>
+</head>
+<body>
+<div class="row content" style="display: none;">
+
+</div><!--END div content-->
+
+
+
+<script th:inline="javascript">
+
+    /*<![CDATA[*/
+
+
+    /*]]>*/
+</script>
+
+
+
+<script>
+
+    var prevLinkURL = "../../../accounts/dashboard";
+
+
+
+    $(document).ready(function() {
+
+        setTimeout(function () {
+            // after 1000 ms we add the class animated to the login/register card
+            $('.content').fadeIn(500);
+        }, 500);
+
+
+    });
+
+</script>
+
+</body>
+</html>
