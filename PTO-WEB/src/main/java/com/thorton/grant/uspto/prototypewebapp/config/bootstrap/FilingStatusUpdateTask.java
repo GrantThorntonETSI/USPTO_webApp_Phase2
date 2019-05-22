@@ -117,6 +117,8 @@ public class FilingStatusUpdateTask extends TimerTask {
                   // set relevant office actions
                   OfficeActions officeActions = new OfficeActions();
                   officeActions.setParentMarkImagePath(current.getTradeMark().getTrademarkImagePath());
+                  officeActions.setStandardCharacterMark(current.isStandardTextMark());
+                  officeActions.setStandardCharacterText(current.getTradeMark().getTrademarkStandardCharacterText());
                   officeActions.setParentMarkOwnerName(current.getPrimaryOwner().getOwnerDisplayname());
                   officeActions.setParentSerialNumber(current.getTrademarkName());
 
@@ -197,6 +199,8 @@ public class FilingStatusUpdateTask extends TimerTask {
                     // do the same thing. create petition object and attach it to the filing
                     Petition petition = new Petition();
                     petition.setParentMarkImagePath(current.getTradeMark().getTrademarkImagePath());
+                    petition.setStandardCharacterMark(current.isStandardTextMark());
+                    petition.setStandardCharacterText(current.getTradeMark().getTrademarkStandardCharacterText());
                     petition.setParentMarkOwnerName(current.getPrimaryOwner().getOwnerDisplayname());
                     petition.setParentSerialNumber(current.getTrademarkName());
 

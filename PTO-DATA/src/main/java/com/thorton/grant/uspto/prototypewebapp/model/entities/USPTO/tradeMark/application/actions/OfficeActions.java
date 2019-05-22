@@ -29,6 +29,12 @@ public class OfficeActions extends BaseEntity {
 
 
 
+    private boolean standardCharacterMark;
+
+    private String standardCharacterText;
+
+
+
     private boolean activeAction;
 
 
@@ -125,6 +131,26 @@ public class OfficeActions extends BaseEntity {
 
     public void setActiveAction(boolean activeAction) {
         this.activeAction = activeAction;
+    }
+
+    public boolean isStandardCharacterMark() {
+        return standardCharacterMark;
+    }
+
+    public void setStandardCharacterMark(boolean standardCharacterMark) {
+        this.standardCharacterMark = standardCharacterMark;
+    }
+
+    public String getStandardCharacterText() {
+        return standardCharacterText;
+    }
+
+    public void setStandardCharacterText(String standardCharacterText) {
+        this.standardCharacterText = standardCharacterText;
+    }
+
+    public String getOfficeActionLink(){
+        return "/officeAction/response/"+getInternalID()+"/?trademarkID="+getTrademarkApplication().getApplicationInternalID();
     }
 
 

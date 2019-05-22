@@ -3842,5 +3842,46 @@ public class ApplicationFlowController {
     }
 
 
+    @RequestMapping({"/officeAction/response/{actionID}"})
+    public String respondToOfficeAction( Model model, @PathVariable String actionID ,@RequestParam("trademarkID") String trademarkInternalID){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        PTOUserService  ptoUserService = serviceBeanFactory.getPTOUserService();
+        PTOUser ptoUser = ptoUserService.findByEmail(authentication.getName());
+        UserCredentialsService userCredentialsService = serviceBeanFactory.getUserCredentialsService();
+        UserCredentials credentials = userCredentialsService.findByEmail(authentication.getName());
+
+
+        BaseTradeMarkApplicationService baseTradeMarkApplicationService = serviceBeanFactory.getBaseTradeMarkApplicationService();
+        BaseTrademarkApplication baseTrademarkApplication = baseTradeMarkApplicationService.findByInternalID(trademarkInternalID);
+
+
+        //OfficeActions action = baseTrademarkApplication.findOfficeActionById(actionID);
+
+        OfficeActions actions = baseTrademarkApplication.findPetitionById(actionID);
+
+        //////////////////////////////////////////////////////
+        // this is set back to null upon verification check
+        //////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////////
+        //continuation = true;
+
+        model.addAttribute("user", ptoUser);
+        model.addAttribute("account",credentials);
+
+        model.addAttribute("action", actions);
+
+        model.addAttribute("baseTrademarkApplication", baseTrademarkApplication);
+
+
+
+
+
+        return "application/office_action/index";
+    }
+
+
 
 }

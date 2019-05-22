@@ -6,7 +6,295 @@
     <title>Goods and Services Review</title>
 </head>
 <body>
-<div class="row content" style="display: none;">
+<div class="row content" id="responseamend" style="display: none;">
+
+    <main class="col-xs-12 col-sm-8 col-md-8 col-lg-7">
+        <!--START Content Div-->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1>Respond to Office Action</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card-text noexpand">
+                            <h2 class="card-title weight600" id="appdata">Application Data</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel-group" aria-describedby="appdata">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-lg-4">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="row underlinerow">
+                                                        <div class="col-xs-12">
+                                                            <h3 class="weight600">Mark information</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <h4>Serial number</h4>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <p><span th:text="${baseTrademarkApplication.getTrademarkName()}">87697840</span></p>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <h4>Mark literal</h4>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <p><span  th:text="${baseTrademarkApplication.getTradeMark().getMarkLiteral()}">PK Prep</span></p>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <h4>Mark image</h4>
+                                                </div>
+
+                                                <th:block  th:if="${baseTrademarkApplication.isStandardTextMark() == true}">
+                                                    <div class="col-xs-6 col-lg-12">
+                                                        <span style="max-width: 55px; max-height: 33px; margin:0 auto;font-family: Palatino, Garamond, Bookman, Avant Garde; font-size:.9em;text-align:center;margin-bottom:0;" th:text="${baseTrademarkApplication.getTradeMark().getTrademarkStandardCharacterText()}"></span>
+                                                    </div>
+
+                                                </th:block>
+                                                <th:block  th:if="${baseTrademarkApplication.isStandardTextMark() == false}">
+                                                    <div class="col-xs-6 col-lg-12">
+                                                        <img th:src="${baseTrademarkApplication.getTradeMark().getMarkImageDisplayPath()}" class="img-thumbnail" alt="your mark image">
+                                                    </div>
+                                                </th:block>
+
+
+
+
+
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <h4>Goods/Services</h4>
+                                                </div>
+
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <p><a href="#" class="disabled" >View goods/services</a></p>
+                                                </div>
+
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <h4>Filing type</h4>
+                                                </div>
+
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <p><span class="uppercase">teas rf</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-lg-4">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="row underlinerow">
+                                                        <div class="col-xs-9">
+                                                            <h3 class="weight600">Owner</h3>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <a href="#" class="disabled" disabled>Edit</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <h4>Owner of record</h4>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <p><span th:text="${baseTrademarkApplication.getPrimaryOwner().getOwnerDisplayname()}"></span></p>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <h4>Email address</h4>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <p class="email"><span th:text="${baseTrademarkApplication.getPrimaryOwner().getEmail()}">pittsburgh&#64;penguins.com</span></p>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <h4>Entity type</h4>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <p><span th:text="${baseTrademarkApplication.getPrimaryOwner().getOwnersubType()}">Limited Partnership</span></p>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <h4>Owner address</h4>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-12">
+                                                    <p><span th:text="${baseTrademarkApplication.getPrimaryOwner().getAddress1()}+''+${baseTrademarkApplication.getPrimaryOwner().getCity()}+', '+${baseTrademarkApplication.getPrimaryOwner().getState()}+' '+${baseTrademarkApplication.getPrimaryOwner().getZipcode()}" ></span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <th:block th:if="${baseTrademarkApplication.isAttorneyFiling() == true}">
+
+                                            <div class="col-xs-12 col-lg-4">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <div class="row underlinerow">
+                                                            <div class="col-xs-9">
+                                                                <h3 class="weight600">Attorney</h3>
+                                                            </div>
+                                                            <div class="col-xs-3">
+                                                                <a href="#" class="disabled" disabled>Edit</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-lg-12">
+                                                        <h4>Attorney of record</h4>
+                                                    </div>
+                                                    <div class="col-xs-6 col-lg-12">
+                                                        <p><span th:text="${baseTrademarkApplication.getPrimaryLawyer().getFirstName()}+' '+${baseTrademarkApplication.getPrimaryLawyer().getLastName()}">Clark W. Lackert</span></p>
+                                                    </div>
+                                                    <div class="col-xs-6 col-lg-12">
+                                                        <h4>Attorney firm</h4>
+                                                    </div>
+                                                    <div class="col-xs-6 col-lg-12">
+                                                        <p><span th:text="${baseTrademarkApplication.getPrimaryLawyer().getLawFirmName()}"></span></p>
+                                                    </div>
+
+                                                    <th:block  th:each="docket : ${baseTrademarkApplication.getPrimaryLawyer().getDocketNumberList()}">
+                                                        <div class="col-xs-6 col-lg-12">
+                                                            <h4>Docket/reference number</h4>
+                                                        </div>
+                                                        <div class="col-xs-6 col-lg-12">
+                                                            <p><span th:text="${docket}">259802.20006</span></p>
+                                                        </div>
+                                                    </th:block>
+
+                                                </div>
+                                            </div>
+
+
+                                        </th:block>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card-text noexpand">
+                            <h2 class="card-title weight600">Required Actions</h2>
+                        </div>
+                        <p>Displayed below are the required actions you need to take in order to continue with this application. You are able to <a href="images/revise_s1.pdf" target="_blank">view the office action here<span class="sr-only">Opens in new window</span><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a>.</p>
+                        <button type="button" class="btn btn-link Accordion-trigger ablock" data-toggle="collapse" data-target="#notentitled" aria-controls="notentitled" aria-expanded="false" id="notentitledbtn"><span class="glyphicon glyphicon-triangle-right"></span><span class="glyphicon glyphicon-triangle-bottom visuallyremoved"></span> Application Not Entitled to Register</button>
+                    </div>
+                </div>
+                <div class="row collapse Accordion-panel" role="region" id="notentitled" aria-labelledby="notentitledbtn">
+                    <div class="col-xs-12">
+                        <div class="callout">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h2>Application Not Entitled to Register &#8211; One Earlier-filed Pending Application &#8211; Applicant May Present Arguments</h2>
+                                </div>
+                                <div class="col-xs-12">
+                                    <p>The filing date of pending U.S. Application Serial No. &#94; precedes applicant&#8217;s filing date. See attached referenced application. If the mark in the referenced application registers, applicant&#8217;s mark may be refused registration under Trademark Act Section 2(d) because of a likelihood of confusion between the two marks. See 15 U.S.C. &#167;1052(d); 37 C.F.R. &#167;2.83; TMEP &#167;&#167;1208 et seq. Therefore, upon receipt of applicant&#8217;s response to this Office action, action on this application may be suspended pending final disposition of the earlier-filed referenced application.</p>
+                                    <p>In response to this Office action, applicant may present arguments in support of registration by addressing the issue of the potential conflict between applicant&#8217;s mark and the mark in the referenced application. Applicant&#8217;s election not to submit arguments at this time in no way limits applicant&#8217;s right to address this issue later if a refusal under Section 2(d) issues.</p>
+                                </div>
+                            </div>
+                            <section aria-label="provide info">
+                                <form action="" method="post">
+                                    <fieldset aria-label="present argument information">
+                                        <div class="row">
+                                            <div class="col-xs-12 form-group form-group-md">
+                                                <label for="noregister">Provide the additional information.</label>
+                                                <textarea id="noregister" rows="6" wrap="hard" class="form-control"></textarea>
+                                                <p class="form-group form-group-md">Optional upload.</p>
+                                                <div class="form-group form-group-md hidethis">
+                                                    <label class="small upload-drop-zone" for="file"><div class="fileDisplayArea"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> <br>Select file</div></label>
+                                                    <input type="file" id="file" name="file" class="form-control">
+                                                </div><!-- Drop Zone -->
+                                                <div class="row">
+                                                    <div class="js-upload-finished col-xs-12">
+                                                        <p id="uploadedfile">Selected files</p>
+                                                        <div class="list-group" id="filedata">
+                                                            <div class="list-group-item list-group-item-success fileholder col-xs-12" role="alert"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <div class="col-xs-12 form-group form-group-md">
+                                                            <button type="submit" class="btn-sm btn-success add ctr" aria-label="submit selected files">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-link Accordion-trigger ablock" data-parent="#accordion" data-toggle="collapse" data-target="#disclaimthis" aria-controls="disclaimthis" aria-expanded="false" id="disclaimthisbtn"><span class="glyphicon glyphicon-triangle-right"></span><span class="glyphicon glyphicon-triangle-bottom visuallyremoved"></span> Disclaimer Required</button>
+                    </div>
+                </div>
+                <div class="row collapse Accordion-panel" role="region" id="disclaimthis" aria-labelledby="disclaimthisbtn">
+                    <div class="col-xs-12">
+                        <div class="callout">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h2>Descriptive Wording (Requires a Disclaimer)</h2>
+                                </div>
+                                <div class="col-xs-12">
+                                    <p>Applicant must provide a disclaimer of the unregistrable part(s) of the applied-for mark even though the mark as a whole appears to be registrable. See 15 U.S.C. &#167;1056(a); TMEP &#167;&#167;1213, 1213.03(a). A disclaimer of an unregistrable part of a mark will not affect the mark&#8217;s appearance. See Schwarzkopf v. John H. Breck, Inc., 340 F.2d 978, 979-80, 144 USPQ 433, 433 (C.C.P.A. 1965).</p>
+                                    <p>In this case, applicant must disclaim the word &#8220;Markey&#8221; because it is not inherently distinctive. These unregistrable term(s) at best are merely descriptive of an ingredient, quality, characteristic, function, feature, purpose, or use of applicant&#8217;s goods and/or services. See 15 U.S.C. &#167;1052(e)(1); DuoProSS Meditech Corp. v. Inviro Med. Devices, Ltd., 695 F.3d 1247, 1251, 103 USPQ2d 1753, 1755 (Fed. Cir. 2012); TMEP &#167;&#167;1213, 1213.03(a).</p>
+                                    <p>&#94;The attached evidence from &#94; shows this wording &#94;&#60;means &#94;/is commonly used in connection with similar goods and/or services to mean &#94;&#62;. Thus, the wording merely describes applicant&#8217;s goods and/or services because &#94;&#60;explain&#62;.</p>
+                                    <p>Applicant may respond to this issue by submitting a disclaimer in the following format:<br>
+                                        <span class="weight600">No claim is made to the exclusive right to use &#8220;&#94;&#8221; apart from the mark as shown.</span></p>
+                                </div>
+                            </div>
+                            <section aria-label="disclaimer of the unregistrable part(s) of the applied-for mark">
+                                <div class="card-text">
+                                    <div role="heading" aria-level="2">
+                                        <button type="button" class="btn btn-link Accordion-trigger" data-toggle="collapse" data-target="#disclaimra" aria-controls="disclaimra" aria-expanded="false" id="discaimrabtn"><span class="glyphicon glyphicon-triangle-right"></span><span class="glyphicon glyphicon-triangle-bottom visuallyremoved"></span> Disclaimer</button>
+                                    </div>
+                                </div>
+                                <div id="disclaimra" class="collapse Accordion-panel" role="region" aria-labelledby="discaimrabtn">
+                                    <div class="Accordion">
+                                        <p>A disclaimer is a statement indicating you do not claim exclusive rights to an unregistrable portion of your mark. This is often material that is descriptive or common in your field of business. A disclaimer does not physically remove the unregistrable portion from your mark or affect the appearance of your mark. You cannot disclaim the entire mark. A disclaimer will appear on the registration certificate.</p>
+                                    </div>
+                                </div>
+                                <form action="" method="post">
+                                    <fieldset aria-label="enter disclaimer information">
+                                        <div class="row disclaim">
+                                            <div class="col-xs-12">
+                                                <p>No claim is made to the exclusive right to use</p>
+                                            </div>
+                                            <div class="form-group form-group-md col-xs-12">
+                                                <label for="noclaim" class="sr-only">No claim is made to the exclusive right to use</label>
+                                                <input type="text" class="form-control" id="noclaim">
+                                            </div>
+                                            <div class="form-group form-group-md col-xs-12">
+                                                <p>apart from the mark as shown.</p>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="inlinebuttons btn-group btn-group-justified" role="navigation" aria-label="view previous or next page" id="prevnxt">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default fill prev" id="" value="previous">Previous</button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-primary fill next" id="" value="next">Next
+                            <div class="round"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
 </div><!--END div content-->
 
