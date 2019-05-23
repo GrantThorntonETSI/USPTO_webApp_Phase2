@@ -4,6 +4,7 @@ import com.thorton.grant.uspto.prototypewebapp.factories.ServiceBeanFactory;
 import com.thorton.grant.uspto.prototypewebapp.interfaces.USPTO.tradeMark.application.types.BaseTradeMarkApplicationService;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions.OfficeActions;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions.Petition;
+import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions.RequiredActions;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.participants.Lawyer;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.types.BaseTrademarkApplication;
 import org.springframework.beans.factory.annotation.Value;
@@ -121,35 +122,41 @@ public class FilingStatusUpdateTask extends TimerTask {
                   officeActions.setStandardCharacterText(current.getTradeMark().getTrademarkStandardCharacterText());
                   officeActions.setParentMarkOwnerName(current.getPrimaryOwner().getOwnerDisplayname());
                   officeActions.setParentSerialNumber(current.getTrademarkName());
+                  officeActions.setActiveAction(true);
+                  //officeActions.setOfficeActionCode("Missing transliteration");
 
-                  if(current.getApplicationSignature() == null || current.getApplicationSignature().equals("")){
-                      officeActions.setOfficeActionCode("Missing signature");
-                      officeActions.setActiveAction(true);
-                      current.addOfficeAction(officeActions);
-                      officeActions.setTrademarkApplication(current);
+                  if (current.getTradeMark().isStandardCharacterMark() || current.getTradeMark().getTrademarkDesignType().equals("Design with Text")) {
+                      if (current.getTradeMark().getForeignLanguageTranslationUSText() == null || current.getTradeMark().getForeignLanguageTranslationUSText() == null) {
 
-                  }
-                  else {
+                          // create required action here
+                          RequiredActions requiredActions = new RequiredActions();
+                          requiredActions.setRequiredActionType("Translation of Foreign Wording");
+                          requiredActions.setTranslationTextForeign(current.getTradeMark().getForeignLanguageTranslationOriginalText());
+                          requiredActions.setTranslationTextEnglish(current.getTradeMark().getForeignLanguageTranslationUSText());
+                          officeActions.addRequiredActions(requiredActions);
 
-                      if (current.getTradeMark().isStandardCharacterMark() || current.getTradeMark().getTrademarkDesignType().equals("Design with text")) {
-                          if (current.getTradeMark().getForeignLanguateTransliterationUSText() != null) {
-                              officeActions.setOfficeActionCode("Missing transliteration");
-                              officeActions.setActiveAction(true);
-                              current.addOfficeAction(officeActions);
-                              officeActions.setTrademarkApplication(current);
-                          }
 
 
                       }
+
+
                   }
+
+
+                  if(current.getTradeMark().getDisclaimerDeclarationList().size() == 0){
+                      // you have to provide at least one disclaimer
+                      RequiredActions requiredActions = new RequiredActions();
+                      requiredActions.setRequiredActionType("Disclaimer Required");
+                      officeActions.addRequiredActions(requiredActions);
+
+                  }
+
 
                   // create  an default office action object and attach it to filing
 
 
-
-
-
-
+                  current.addOfficeAction(officeActions);
+                  officeActions.setTrademarkApplication(current);
                   baseTradeMarkApplicationService.save(current);
 
 

@@ -3,15 +3,20 @@ package com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.a
 import com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.types.BaseTrademarkApplication;
 import com.thorton.grant.uspto.prototypewebapp.model.entities.base.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
 public class OfficeActions extends BaseEntity {
 
+
+    public OfficeActions() {
+
+        requiredActions = new HashSet<>();
+    }
 
     private String officeAction;
 
@@ -58,6 +63,10 @@ public class OfficeActions extends BaseEntity {
     private BaseTrademarkApplication trademarkApplication;
 
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<RequiredActions> requiredActions;
+
+
 
 
 
@@ -79,12 +88,26 @@ public class OfficeActions extends BaseEntity {
         this.officeActionCode = officeActionCode;
     }
 
+
+    public Set<RequiredActions> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(Set<RequiredActions> requiredActions) {
+        this.requiredActions = requiredActions;
+    }
+
     public BaseTrademarkApplication getTrademarkApplication() {
         return trademarkApplication;
     }
 
     public void setTrademarkApplication(BaseTrademarkApplication trademarkApplication) {
         this.trademarkApplication = trademarkApplication;
+    }
+
+    public RequiredActions addRequiredActions(RequiredActions requiredActions){
+        this.requiredActions.add(requiredActions);
+        return requiredActions;
     }
 
 
