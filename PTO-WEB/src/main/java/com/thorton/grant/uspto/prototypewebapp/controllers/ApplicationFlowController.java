@@ -3859,7 +3859,7 @@ public class ApplicationFlowController {
 
         //OfficeActions action = baseTrademarkApplication.findOfficeActionById(actionID);
 
-        OfficeActions actions = baseTrademarkApplication.findPetitionById(actionID);
+        OfficeActions actions = baseTrademarkApplication.findOfficeActionById(actionID);
 
         //////////////////////////////////////////////////////
         // this is set back to null upon verification check

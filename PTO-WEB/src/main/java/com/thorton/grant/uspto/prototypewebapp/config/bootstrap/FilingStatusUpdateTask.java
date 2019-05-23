@@ -106,7 +106,7 @@ public class FilingStatusUpdateTask extends TimerTask {
         for(Iterator<BaseTrademarkApplication> iter = baseTradeMarkApplicationService.findAll().iterator(); iter.hasNext(); ) {
             BaseTrademarkApplication current = iter.next();
 
-            if(current.getApplicationFilingDate() != null && current.getFilingStatus().equals("Submitted")){
+            if(current.getApplicationFilingDate() != null && current.getFilingStatus().equals("New Application")){
                 // check that date + duration against current time
               if((current.getApplicationFilingDate().getTime() + blackOutPeriodDuration) < new Date().getTime()){
 
@@ -147,13 +147,17 @@ public class FilingStatusUpdateTask extends TimerTask {
                       // you have to provide at least one disclaimer
                       RequiredActions requiredActions = new RequiredActions();
                       requiredActions.setRequiredActionType("Disclaimer Required");
+
+
                       officeActions.addRequiredActions(requiredActions);
 
                   }
 
 
+                  current.setFilingStatus("Non-Final Action Mailed");
+                  officeActions.setOfficeActionCode("Non-Final Action Mailed");
 
-                  current.setFilingStatus("Submitted - OA issued");
+
                   // create  an default office action object and attach it to filing
 
 
@@ -197,12 +201,12 @@ public class FilingStatusUpdateTask extends TimerTask {
         for(Iterator<BaseTrademarkApplication> iter = baseTradeMarkApplicationService.findAll().iterator(); iter.hasNext(); ) {
 
             BaseTrademarkApplication current = iter.next();
-            if(current.getApplicationFilingDate() != null && current.getFilingStatus().equals("Submitted - OA issued") == true){
+            if(current.getApplicationFilingDate() != null && current.getFilingStatus().equals("Non-Final Action Mailed") == true){
                 // check that date + duration against current time
                 if((current.getApplicationFilingDate().getTime() + blackOutPeriodDuration +firstOfficeActionDuration) < new Date().getTime()){
 
                     System.out.println("Filing has expired from the office action period");
-                    current.setFilingStatus("Abandoned");
+
                     // remove office action ..or set it to inactive
                     // so on the dashboard. we only show actions that are active
                     //
@@ -214,7 +218,10 @@ public class FilingStatusUpdateTask extends TimerTask {
                     petition.setParentMarkOwnerName(current.getPrimaryOwner().getOwnerDisplayname());
                     petition.setParentSerialNumber(current.getTrademarkName());
 
+
+                    current.setFilingStatus("Abandoned - Failure to Respond or Late Response");
                     petition.setOfficeActionCode("Abandoned - Failure to Respond or Late Response");
+
                     petition.setActivePetition(true);
                     current.addPetition(petition);
                     petition.setTrademarkApplication(current);
