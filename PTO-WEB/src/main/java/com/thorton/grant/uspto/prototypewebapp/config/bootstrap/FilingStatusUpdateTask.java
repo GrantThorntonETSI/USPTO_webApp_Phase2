@@ -111,7 +111,7 @@ public class FilingStatusUpdateTask extends TimerTask {
               if((current.getApplicationFilingDate().getTime() + blackOutPeriodDuration) < new Date().getTime()){
 
                   System.out.println("Filing has expired from the black out period");
-                  current.setFilingStatus("Office Action");
+
                   //baseTradeMarkApplicationService.save(current);
 
 
@@ -152,6 +152,8 @@ public class FilingStatusUpdateTask extends TimerTask {
                   }
 
 
+
+                  current.setFilingStatus("Submitted - OA issued");
                   // create  an default office action object and attach it to filing
 
 
@@ -166,6 +168,7 @@ public class FilingStatusUpdateTask extends TimerTask {
                   // check for possible office actions
 
                   // 1. failed to provide declarations and signature
+
 
 
                   // 2. missing transliteration for standard character and design with text
@@ -194,7 +197,7 @@ public class FilingStatusUpdateTask extends TimerTask {
         for(Iterator<BaseTrademarkApplication> iter = baseTradeMarkApplicationService.findAll().iterator(); iter.hasNext(); ) {
 
             BaseTrademarkApplication current = iter.next();
-            if(current.getApplicationFilingDate() != null && current.getFilingStatus().equals("Office Action") == true){
+            if(current.getApplicationFilingDate() != null && current.getFilingStatus().equals("Submitted - OA issued") == true){
                 // check that date + duration against current time
                 if((current.getApplicationFilingDate().getTime() + blackOutPeriodDuration +firstOfficeActionDuration) < new Date().getTime()){
 
@@ -211,7 +214,7 @@ public class FilingStatusUpdateTask extends TimerTask {
                     petition.setParentMarkOwnerName(current.getPrimaryOwner().getOwnerDisplayname());
                     petition.setParentSerialNumber(current.getTrademarkName());
 
-                    petition.setOfficeActionCode("Abandoned");
+                    petition.setOfficeActionCode("Abandoned - Failure to Respond or Late Response");
                     petition.setActivePetition(true);
                     current.addPetition(petition);
                     petition.setTrademarkApplication(current);
