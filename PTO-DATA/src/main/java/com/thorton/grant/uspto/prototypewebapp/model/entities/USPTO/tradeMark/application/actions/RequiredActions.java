@@ -1,6 +1,5 @@
 package com.thorton.grant.uspto.prototypewebapp.model.entities.USPTO.tradeMark.application.actions;
 
-import com.thorton.grant.uspto.prototypewebapp.model.entities.base.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -9,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "required_actions")
-public class RequiredActions extends BaseEntity {
+public class RequiredActions extends OfficeActions{
 
 
 

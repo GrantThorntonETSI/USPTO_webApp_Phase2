@@ -230,7 +230,7 @@
                                                     </div>
                                                     <div class="form-group form-group-md col-xs-12">
                                                         <label for="noclaim" class="sr-only">No claim is made to the exclusive right to use</label>
-                                                        <input type="text" class="form-control" id="noclaim" th:value="${requiredActions.getDisclaimerText()}">
+                                                        <input type="text" class="form-control" id="noclaim" th:value="${requiredActions.getDisclaimerText()}"  th:attr="action-id=${requiredActions.getInternalID()}">
                                                     </div>
                                                     <div class="form-group form-group-md col-xs-12">
                                                         <p>apart from the mark as shown.</p>
@@ -283,7 +283,7 @@
                                                         <fieldset aria-label="select foreign language">
                                                             <div class="form-group form-group-md col-xs-12">
                                                                 <label for="foreignlanguage">Language:</label>
-                                                                <select class="form-control" id="foreignlanguage">
+                                                                <select class="form-control" id="foreignlanguage"  th:attr="action-id=${requiredActions.getInternalID()}">
                                                                     <option th:value="${requiredActions.translationTextLanguage}" th:text="${requiredActions.translationTextLanguage}" selected></option>
                                                                     <option value="Select">Select</option>
                                                                     <option value="Spanish">Spanish</option>
@@ -300,14 +300,14 @@
                                                         <div class="row">
                                                             <div class="form-group form-group-md col-xs-12">
                                                                 <label for="foreignwording" class="sr-only">enter the foreign language of the mark text</label>
-                                                                <input type="text" class="form-control" id="foreignwording" th:value="${requiredActions.translationTextForeign}">
+                                                                <input type="text" class="form-control" id="foreignwording" th:value="${requiredActions.translationTextForeign}"  th:attr="action-id=${requiredActions.getInternalID()}">
                                                             </div>
                                                             <div class="form-group form-group-md col-xs-12">
                                                                 <p>in the mark is</p>
                                                             </div>
                                                             <div class="form-group form-group-md col-xs-12">
                                                                 <label for="englishwording" class="sr-only">enter the English language of the mark text</label>
-                                                                <input type="text" class="form-control" id="englishwording" th:value="${requiredActions.translationTextEnglish}">
+                                                                <input type="text" class="form-control" id="englishwording" th:value="${requiredActions.translationTextEnglish}"  th:attr="action-id=${requiredActions.getInternalID()}">
                                                             </div>
                                                         </div>
                                                     </fieldset>
@@ -361,6 +361,19 @@
 <script th:inline="javascript">
 
     /*<![CDATA[*/
+    var appInternalID = /*[[${baseTrademarkApplication.applicationInternalID}]]*/ 'User Name';
+
+    var  image_path = /*[[${markImagePath}]]*/ 'User Name';
+
+    var  image_pathBW = /*[[${markImagePathBW}]]*/ 'User Name';
+
+    var colorClaim = /*[[${markColorClaim}]]*/ 'User Name';
+
+
+    var acceptBW = /*[[${markColorClaimBW}]]*/ 'User Name';
+
+    var OfficeActionID = /*[[${OfficeActionID}]]*/ 'User Name';
+
 
 
     /*]]>*/
@@ -382,7 +395,64 @@
         }, 500);
 
 
+
+
+
+        // ajax auto save
+        $('#foreignlanguage').change( function () {
+
+            var requiredActionID = $(this).attr("action-id");
+
+            var languageType = $(this).val();
+            // we also need the action id, and required action id
+            saveOAresponse("OA-translation-languageType", languageType, OfficeActionID, requiredActionID, appInternalID);
+
+        });
+
+
     });
+
+
+    function saveOAresponse(FieldName, FieldValue, OA_id, RA_id ,appInternalID) {
+
+        //var field_value = $(this).val();
+        //alert(field_value);
+
+
+        $.ajax({
+            url: "../../../REST/apiGateway/OfficeAction/response/update/" + FieldName + "/" + FieldValue + "/" + OA_id + "/" + RA_id +"/"+appInternalID,
+            type: 'GET',
+            success: function (data) {
+
+                // parse out status msg:
+                var s_code = data.substring(data.indexOf("status:") + 7, data.indexOf("status:") + 4 + 7);
+
+                var s_msg = data.substring(data.indexOf("msg:") + 4, data.length - 2);
+
+                if (s_code.trim() == "200") {
+                    //if(data.contains("status: 200")){
+                    // show confirmation check mark on form
+                    //$('#toggle').delay(1000).click();
+                    $(".autoSaveMessageArea span").fadeOut(500);
+                    setTimeout(function () {
+                        // after 1000 ms we add the class animated to the login/register card
+                        $(".autoSaveMessageArea span").text(s_msg);
+                        $(".autoSaveMessageArea span").fadeIn(1000);
+                    }, 500);
+
+                }
+
+
+            },
+            error: function (data) {
+
+                console.log(data);
+
+            }
+
+        });
+    }
+
 
 </script>
 

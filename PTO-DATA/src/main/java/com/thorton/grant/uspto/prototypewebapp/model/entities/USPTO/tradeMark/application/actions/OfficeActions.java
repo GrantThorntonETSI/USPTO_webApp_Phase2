@@ -6,10 +6,12 @@ import com.thorton.grant.uspto.prototypewebapp.model.entities.base.BaseEntity;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 
 @Entity
+@Table(name = "office_actions")
 public class OfficeActions extends BaseEntity {
 
 
@@ -176,6 +178,19 @@ public class OfficeActions extends BaseEntity {
         return "/officeAction/response/"+getInternalID()+"/?trademarkID="+getTrademarkApplication().getApplicationInternalID();
     }
 
+
+
+    public RequiredActions findRequiredActionById(String id){
+        RequiredActions action = null;
+        for(Iterator<RequiredActions> iter = requiredActions.iterator(); iter.hasNext(); ) {
+            RequiredActions current = iter.next();
+
+            if(current.getInternalID().equals(id)){
+                action = current;
+            }
+        }
+        return action;
+    }
 
 
 }
