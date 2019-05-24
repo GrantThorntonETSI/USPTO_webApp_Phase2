@@ -3003,6 +3003,20 @@ footer #megamenu ul {
 		margin-bottom: 1em;
 	}
 }
+@media (min-width: 990px) {
+	.matchlabelheight, .matchlabelheighttwo {
+		min-height:48px;
+	}
+	.callout, #responseamend .callout .panel-body {
+		padding:4em;
+		padding-bottom:3.1em;
+	}
+}
+@media (max-width: 1039px) {
+	#responseamendtable th .form-check span.radio.notspecial::before, #responseamendtabletwo th .form-check span.radio.notspecial::before {
+		left: -26px;
+	}
+}
 @media (orientation: portrait) {
 	.stickycomponents {
 		margin-bottom: 100%!important;
@@ -3012,12 +3026,16 @@ footer #megamenu ul {
 	.wide {
 		width:80%;
 	}
-	#dashboardtableone_wrapper input[type="search"], #dashboardtabletwo_wrapper input[type="search"]  {
+	#dashboardtableone_wrapper input[type="search"], #dashboardtabletwo_wrapper input[type="search"], #filepetitiontable_wrapper input[type="search"] {
 		width:11em;
+	}
+	.callout, #responseamend .callout .panel-body {
+		padding:5em;
+		padding-bottom:4.1em;
 	}
 }
 @media (min-width: 450px) and (max-width: 1199px) {
-	#dashboardtableone_wrapper input[type="search"], #dashboardtabletwo_wrapper input[type="search"]  {
+	#dashboardtableone_wrapper input[type="search"], #dashboardtabletwo_wrapper input[type="search"], #filepetitiontable_wrapper input[type="search"] {
 		width:11em;
 	}
 }
@@ -3029,6 +3047,12 @@ footer #megamenu ul {
 		min-height: 20em;
 	}
 }
+@media (min-width: 1748px) {
+	#responseamend main {
+		padding-left:12em;
+		padding-right:12em;
+	}
+}
 @media (min-width: 1800px) {
 	#userprofilepage .panel-heading {
 		min-height: 6em;
@@ -3038,6 +3062,9 @@ footer #megamenu ul {
 	}
 	.js-upload-finished, .upload-drop-zone {
 		width:50%;
+	}
+	#responseamend .js-upload-finished, .upload-drop-zone {
+		width:100%;
 	}
 }
 
