@@ -126,13 +126,17 @@ public class FilingStatusUpdateTask extends TimerTask {
                   //officeActions.setOfficeActionCode("Missing transliteration");
 
                   if (current.getTradeMark().isStandardCharacterMark() || current.getTradeMark().getTrademarkDesignType().equals("Design with Text")) {
-                      if (current.getTradeMark().getForeignLanguageTranslationUSText() == null || current.getTradeMark().getForeignLanguageTranslationUSText() == null) {
+                      if (current.getTradeMark().getForeignLanguageTranslationUSText() == null || current.getTradeMark().getForeignLanguageTranslationUSText() == null || current.getTradeMark().getForeignLanguageType_translation() == null ){
 
                           // create required action here
                           RequiredActions requiredActions = new RequiredActions();
                           requiredActions.setRequiredActionType("Translation of Foreign Wording");
                           requiredActions.setTranslationTextForeign(current.getTradeMark().getForeignLanguageTranslationOriginalText());
                           requiredActions.setTranslationTextEnglish(current.getTradeMark().getForeignLanguageTranslationUSText());
+                          requiredActions.setTranslationTextLanguage(current.getTradeMark().getForeignLanguageType_translation());
+
+
+
                           officeActions.addRequiredActions(requiredActions);
 
 
@@ -147,7 +151,6 @@ public class FilingStatusUpdateTask extends TimerTask {
                       // you have to provide at least one disclaimer
                       RequiredActions requiredActions = new RequiredActions();
                       requiredActions.setRequiredActionType("Disclaimer Required");
-
 
                       officeActions.addRequiredActions(requiredActions);
 

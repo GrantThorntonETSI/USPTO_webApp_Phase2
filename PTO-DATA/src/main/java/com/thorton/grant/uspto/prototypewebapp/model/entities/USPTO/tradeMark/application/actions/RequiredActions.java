@@ -26,6 +26,8 @@ public class RequiredActions extends BaseEntity {
 
     // fields for translation
 
+    private String translationTextLanguage;
+
     private String translationTextForeign;
     private String translationTextEnglish;
 
@@ -101,5 +103,14 @@ public class RequiredActions extends BaseEntity {
 
     public void setParentOfficeAction(OfficeActions parentOfficeAction) {
         this.parentOfficeAction = parentOfficeAction;
+    }
+
+
+    public String getTranslationTextLanguage() {
+        return translationTextLanguage;
+    }
+
+    public void setTranslationTextLanguage(String translationTextLanguage) {
+        this.translationTextLanguage = translationTextLanguage;
     }
 }

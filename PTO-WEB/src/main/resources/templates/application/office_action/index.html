@@ -230,7 +230,7 @@
                                                     </div>
                                                     <div class="form-group form-group-md col-xs-12">
                                                         <label for="noclaim" class="sr-only">No claim is made to the exclusive right to use</label>
-                                                        <input type="text" class="form-control" id="noclaim">
+                                                        <input type="text" class="form-control" id="noclaim" th:value="${requiredActions.getDisclaimerText()}">
                                                     </div>
                                                     <div class="form-group form-group-md col-xs-12">
                                                         <p>apart from the mark as shown.</p>
@@ -284,6 +284,7 @@
                                                             <div class="form-group form-group-md col-xs-12">
                                                                 <label for="foreignlanguage">Language:</label>
                                                                 <select class="form-control" id="foreignlanguage">
+                                                                    <option th:value="${requiredActions.translationTextLanguage}" th:text="${requiredActions.translationTextLanguage}" selected></option>
                                                                     <option value="Select">Select</option>
                                                                     <option value="Spanish">Spanish</option>
                                                                     <option value="German">German</option>
@@ -299,14 +300,14 @@
                                                         <div class="row">
                                                             <div class="form-group form-group-md col-xs-12">
                                                                 <label for="foreignwording" class="sr-only">enter the foreign language of the mark text</label>
-                                                                <input type="text" class="form-control" id="foreignwording">
+                                                                <input type="text" class="form-control" id="foreignwording" th:value="${requiredActions.translationTextForeign}">
                                                             </div>
                                                             <div class="form-group form-group-md col-xs-12">
                                                                 <p>in the mark is</p>
                                                             </div>
                                                             <div class="form-group form-group-md col-xs-12">
                                                                 <label for="englishwording" class="sr-only">enter the English language of the mark text</label>
-                                                                <input type="text" class="form-control" id="englishwording">
+                                                                <input type="text" class="form-control" id="englishwording" th:value="${requiredActions.translationTextEnglish}">
                                                             </div>
                                                         </div>
                                                     </fieldset>
