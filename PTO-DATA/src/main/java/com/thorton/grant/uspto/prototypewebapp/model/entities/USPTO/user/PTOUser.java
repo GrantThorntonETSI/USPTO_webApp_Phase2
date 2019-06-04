@@ -87,6 +87,11 @@ public class PTOUser extends UserPersonalData {
         return  newApplication;
     }
 
+    public void deleteApplication( BaseTrademarkApplication application){
+        myApplications.remove(application);
+
+    }
+
 
     public Lawyer addLawyer(Lawyer newLawyer){
 

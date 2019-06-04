@@ -121,8 +121,9 @@ object#selected {
 	overflow:visible;
 }
 .img-thumbnail, .thumbnail {
-	-webkit-box-shadow: 0 0px 0px rgba(0,0,0,0);
-	box-shadow: 0 0px 0px rgba(0,0,0,0);
+	-webkit-box-shadow: 0 0 0 rgba(0,0,0,0);
+	-moz-box-shadow: 	0 0 0 rgba(0,0,0,0);
+	box-shadow: 		0 0 0 rgba(0,0,0,0);
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
@@ -715,7 +716,7 @@ span#filingsheader {
 }
 #announce h3{
 	padding:4px;
-	color:#fff;
+	color:#808080;
 	text-align:center;
 }
 #goodsandservices_wrapper {
@@ -878,13 +879,49 @@ main #loginform .landingpagemain {
 	-moz-border-radius:1.3em;
 	border-radius:1.3em;
 }
-table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before, table#dashboardtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table#dashboardtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
-	background-color: #009CDE;
+table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before, table#dashboardtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table#dashboardtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before, table#filepetitiontable.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table#filepetitiontable.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before, table#responseamendtable.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table#responseamendtable.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before, table#responseamendtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table#responseamendtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
+	-webkit-box-shadow: 0 0 0 rgba(0,0,0,0);
+	-moz-box-shadow: 	0 0 0 rgba(0,0,0,0);
+	box-shadow: 		0 0 0 rgba(0,0,0,0);
 	left:6px;
+	content: '\e250';
+	font-family: 'Glyphicons Halflings';
+	font-size: 1em;
+	line-height: 1.84em;
+	top:23.63%;
+	width:1.5em;
+	height:1.56em;
+	-webkit-border-radius: 1.6em;
+	-webkit-border-bottom-right-radius: 1.7em;
+	-webkit-border-bottom-left-radius: 1.7em;
+	-moz-border-radius: 1.6em;
+	-moz-border-radius-bottomright: 1.7em;
+	-moz-border-radius-bottomleft: 1.7em;
+	border-radius: 1.6em;
+	border-bottom-right-radius: 1.7em;
+	border-bottom-left-radius: 1.7em;
+	margin-left:10%;
+	color:#009CDE;
 }
-table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
-	background-color: #63666A!important;
-	color: #fff!important;
+table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"].odd>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"].odd>th:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"].odd>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"].odd>th:first-child:before {
+	background-color: #f1f1f1;
+	border: .2em solid #f1f1f1;
+}
+table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"].even>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"].even>th:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"].even>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"].even>th:first-child:before {
+	background-color: #fafafa;
+	border: .2em solid #fafafa;
+}
+table.dataTable.dtr-inline.collapsed>tbody>tr.odd.parent>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr.odd.parent>th:first-child:before {
+	background-color: #f1f1f1!important;
+	border: .2em solid #f1f1f1!important;
+	color:#808080!important;
+	content: '\e252'!important;
+}
+table.dataTable.dtr-inline.collapsed>tbody>tr.even.parent>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr.even.parent>th:first-child:before {
+	background-color: #fafafa!important;
+	border: .2em solid #fafafa!important;
+	color:#808080!important;
+	content: '\e252'!important;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.active, #dashboardtabletwo_paginate .paginate_button.current, #dashboardtabletwo_paginate .paginate_button.active {
 	cursor: pointer;
@@ -2017,14 +2054,18 @@ option, select, input[type="text"], input[type="email"], input[type="date"], inp
 }
 .form-control:focus {
 	background-color: #fafafb!important;
+	border-color: #009CDE!important;
 }
-.form-control:focus, .dataTables_length select, .sorting_1 {
+.form-control:focus, .dataTables_length select, .sorting_1, .highlighted:focus {
 	box-shadow: none!important;
 	-webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0)!important;
 	box-shadow: inset 0 0 0 rgba(0,0,0,0)!important;
-	border-color: #1596D1!important;
+	border: 1px solid #ccc!important;
 	outline: 0!important;
 	background:none;
+}
+.sorting_1 {
+	border: none!important;
 }
 .form-control {
 	box-shadow: none!important;
@@ -3108,4 +3149,35 @@ a.disabled, a.disabled span {
 a.disabled:hover, a.disabled:active, a.disabled span:hover,  a.disabled span:active {
 	text-decoration: none;
 	color: #cdd8dc!important;
+}
+
+#editattorney .breadcrumb-steps .col-xs-2 {
+	width:20%;
+}
+
+#dashboardtableone th, #dashboardtabletwo th {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.deleterow {
+	float: right;
+}
+
+#dashboard .dashsection button.close {
+	color: #009CDE;
+	margin-left: 1.5em;
+	float:left;
+}
+
+table#dashboardtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table#dashboardtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before, table#responseamendtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table#responseamendtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
+	vertical-align: middle;
+	display: block;
+	top: 0;
+	position: relative;
+	float: left;
+	margin-left:0;
+}
+table#dashboardtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child, table#dashboardtabletwo.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child {
+	padding-left: 0;
 }

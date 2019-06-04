@@ -82,124 +82,6 @@ $(document).ready(function(){
 
 
 
-	//START initialize Dashboard datable one
-	var tableone = $('#dashboardtableone').DataTable({
-		"fnDrawCallback": function( oSettings ) {
-		},
-		'sDom': '<"toolbar">lfrtip',
-		"language": {
-			"search": "<span class='glyphicon glyphicon-search' aria-hidden='true'></span><span class='sr-only'>search</span>",
-			"lengthMenu": "<span class='glyphicon glyphicon-filter' aria-hidden='true'></span><span class='sr-only'>select number of entries to display</span> <select>"+
-				'<option value="10">10</option>'+
-				'<option value="25">25</option>'+
-				'<option value="50">50</option>'+
-				'<option value="100">100</option>'+
-				'<option value="-1">All</option>'+
-				'</select>'
-		},
-		'autoWidth': false,
-		'responsive': true,
-		'columns': [
-			{ 'width': '20%' },
-			{ 'width': '20%' },
-			{ 'width': '20%' },
-			{ 'width': '20%' },
-			{ 'width': '20%' },
-		],
-		'columnDefs': [
-			{ responsivePriority: 1, targets: 0 },
-			{ responsivePriority: 2, targets: 1 },
-			{ responsivePriority: 3, targets: 3 },
-			{ responsivePriority: 4, targets: 2 },
-			{ responsivePriority: 5, targets: 4 },
-			{ className: 'centertxt', 'targets': [ 0,1,2,3,4 ] },
-		],
-	});
-	//END initialize Dashboard datable one
-
-
-	//
-	//START initialize Response Amendment datable
-	var tablethree = $('#responseamendtable').DataTable({
-		"fnDrawCallback": function( oSettings ) {
-		},
-		'sDom': 't',
-		//"language": {
-		//"search": "<span class='glyphicon glyphicon-search' aria-hidden='true'></span><span class='sr-only'>search</span>",
-//			"lengthMenu": "<span class='glyphicon glyphicon-filter' aria-hidden='true'></span><span class='sr-only'>select number of entries to display</span> <select>"+
-//			  '<option value="10">10</option>'+
-//			  '<option value="25">25</option>'+
-//			  '<option value="50">50</option>'+
-//			  '<option value="100">100</option>'+
-//			  '<option value="-1">All</option>'+
-//			  '</select>'
-		//},
-
-		'autoWidth': false,
-		responsive: {
-			breakpoints: [
-				{ name: 'desktop', width: Infinity },
-				{ name: 'tablet',  width: 1024 },
-				{ name: 'fablet',  width: 768 },
-				{ name: 'phone',   width: 480 }
-			]
-		},
-		'columns': [
-			{ 'width': '4%' },
-			{ 'width': '30%' },
-			{ 'width': '36%' },
-			{ 'width': '30%' },
-		],
-		'columnDefs': [
-			{ className: 'centertxt', 'targets': [ 0,1,2 ] },
-			{ orderable: false},
-			{ className: 'select-checkbox'},
-			{ targets:   0}
-		],
-		select: {
-			style:    'multi',
-			selector: 'tr td:nth-child(1) span'
-		},
-		order: [[ 1, 'asc' ]]
-	});
-	//START initialize Dashboard datable two
-	var tabletwo = $('#dashboardtabletwo').DataTable({
-		"fnDrawCallback": function( oSettings ) {
-		},
-		'sDom': '<"toolbartwo">lfrtip',
-		"language": {
-			"search": "<span class='glyphicon glyphicon-search' aria-hidden='true'></span><span class='sr-only'>search</span>",
-			"lengthMenu": "<span class='glyphicon glyphicon-filter' aria-hidden='true'></span><span class='sr-only'>select number of entries to display</span> <select>"+
-				'<option value="10">10</option>'+
-				'<option value="25">25</option>'+
-				'<option value="50">50</option>'+
-				'<option value="100">100</option>'+
-				'<option value="-1">All</option>'+
-				'</select>'
-		},
-		'autoWidth': false,
-		'responsive': true,
-		'columns': [
-			{ 'width': '12%' },
-			{ 'width': '17%' },
-			{ 'width': '14%' },
-			{ 'width': '14%' },
-			{ 'width': '15%' },
-			{ 'width': '14%' },
-			{ 'width': '14%' },
-		],
-		'columnDefs': [
-			{ responsivePriority: 1, targets: 0 },
-			{ responsivePriority: 2, targets: 6 },
-			{ responsivePriority: 3, targets: 4 },
-			{ responsivePriority: 4, targets: 5 },
-			{ responsivePriority: 5, targets: 1 },
-			{ responsivePriority: 6, targets: 3 },
-			{ responsivePriority: 7, targets: 2 },
-			{ className: 'centertxt', 'targets': [ 0,1,2,3,4,5,6 ] },
-		],
-	});
-	//END initialize Dashboard datable two
 
 	// intialize application review data table
 	var tablethree = $('#responseamendtabletwo').DataTable({
@@ -1852,7 +1734,127 @@ $(document).ready(function(){
 	});
 
 
+	//START initialize Dashboard datable one
+	var tableone = $('#dashboardtableone').DataTable({
+		"fnDrawCallback": function( oSettings ) {
+		},
+		'sDom': '<"toolbar">lfrtip',
+		"language": {
+			"search": "<span class='glyphicon glyphicon-search' aria-hidden='true'></span><span class='sr-only'>search</span>",
+			"lengthMenu": "<span class='glyphicon glyphicon-filter' aria-hidden='true'></span><span class='sr-only'>select number of entries to display</span> <select>"+
+				'<option value="10">10</option>'+
+				'<option value="25">25</option>'+
+				'<option value="50">50</option>'+
+				'<option value="100">100</option>'+
+				'<option value="-1">All</option>'+
+				'</select>'
+		},
+		'autoWidth': false,
+		responsive: {
+			breakpoints: [
+				{ name: 'desktop', width: Infinity },
+				{ name: 'tablet',  width: 1180 },
+				{ name: 'fablet',  width: 768 },
+				{ name: 'phone',   width: 480 }
+			]
+		},
+		'columns': [
+			{ 'width': '20%' },
+			{ 'width': '16%' },
+			{ 'width': '25%' },
+			{ 'width': '16%' },
+			{ 'width': '12%' },
+			{ 'width': '11%' },
+		],
+		'columnDefs': [
+			{ responsivePriority: 1, targets: 0 },//buttons
+			{ responsivePriority: 2, targets: 1 },//serial
+			{ responsivePriority: 4, targets: 2 },//reg
+			{ responsivePriority: 3, targets: 3 },//owner
+			{ responsivePriority: 6, targets: 4 },//status
+			{ responsivePriority: 5, targets: 5 },//mark
+			{ className: 'centertxt', 'targets': [ 0,1,2,3,4,5 ] },
+		],
+	});
+	//
+	//START delete dashboard table row
+	$( '#dashboardtableone tbody' ).on('click','.deleterow',function(e){
+		e.preventDefault();
+		var numrows = $( '#dashboardtableone tbody tr' ).length -1;
+		var rows = $( '#dashboardtableone tbody tr' );
+		$( this ).closest('tr').next('tr.child').remove();
+		$( this ).closest('tr').remove();
+		$('#dashboardtableone_info').text('Showing 1 to ' + numrows + ' of ' + numrows + ' entries');
+		if (numrows < 1) {
+			$('#dashboardtableone_info').text('Showing 0 to ' + numrows + ' of ' + numrows + ' entries');
+		};
+	});
 
+
+	//START initialize Dashboard datable two
+	var tabletwo = $('#dashboardtabletwo').DataTable({
+		"fnDrawCallback": function( oSettings ) {
+		},
+		'sDom': '<"toolbartwo">lfrtip',
+		"language": {
+			"search": "<span class='glyphicon glyphicon-search' aria-hidden='true'></span><span class='sr-only'>search</span>",
+			"lengthMenu": "<span class='glyphicon glyphicon-filter' aria-hidden='true'></span><span class='sr-only'>select number of entries to display</span> <select>"+
+				'<option value="10">10</option>'+
+				'<option value="25">25</option>'+
+				'<option value="50">50</option>'+
+				'<option value="100">100</option>'+
+				'<option value="-1">All</option>'+
+				'</select>'
+		},
+		'autoWidth': false,
+		responsive: {
+			breakpoints: [
+				{ name: 'desktop', width: Infinity },
+				{ name: 'tablet',  width: 1180 },
+				{ name: 'fablet',  width: 768 },
+				{ name: 'phone',   width: 380 }
+			]
+		},
+		'columns': [
+			{ 'width': '18%' },//buttons
+			{ 'width': '10%' },//serial
+			{ 'width': '25%' },//reg
+			{ 'width': '11%' },//mark
+			{ 'width': '9%' },//owner
+			{ 'width': '9%' },
+			{ 'width': '9%' },
+			{ 'width': '9%' },
+		],
+		'columnDefs': [
+			{ responsivePriority: 1, targets: 0 },//buttons
+			{ responsivePriority: 2, targets: 1 },//serial
+			{ responsivePriority: 4, targets: 2 },//reg
+			{ responsivePriority: 5, targets: 3 },//mark
+			{ responsivePriority: 3, targets: 4 },//owner
+			{ className: 'centertxt', 'targets': [ 0,1,2,3,4,5 ] },
+		],
+	});
+
+	$(function() {
+		var progresslength = $('#editattorney .breadcrumb-steps .col-xs-2').length;
+		var progress = $('#editattorney .breadcrumb-steps .col-xs-2');
+		if ((progresslength) === 5)  {
+			$(progress).css('width','20%');
+		}
+		if ((progresslength) === 4)  {
+			$(progress).css('width','25%');
+		}
+		if ((progresslength) === 3)  {
+			$(progress).css('width','33.33%');
+		}
+		if ((progresslength) === 2)  {
+			$(progress).css('width','50%');
+		}
+		if ((progresslength) === 1)  {
+			$('#editattorney .displaycell').css('display','none');
+			console.log(progresslength);
+		}
+	});
 
 });
 
