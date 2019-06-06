@@ -137,7 +137,7 @@ $(document).ready(function(){
 
 
 	//Dashboard datatables ellipsis menu tableone
-    $("div.toolbar").html('<div class="dropdown"><button class="btn btn-xs dropdown-toggle" type="button" id="dropdownMenucolvis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical" role="img" aria-label="toggle columns visibility"></span></button><ul class="dropdown-menu" aria-labelledby="dropdownMenucolvis"><li class="dropdown-header">Toggle Columns</li><li><a class="toggle-vis" data-column="0"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Serial#</a></li><li><a class="toggle-vis" data-column="1"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Registration#</a></li><li><a class="toggle-vis" data-column="2"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Owner</a></li><li><a class="toggle-vis" data-column="3"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Status</a></li><li><a class="toggle-vis" data-column="4"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Mark</a></li></ul></div>');
+	$("div.toolbar").html('<div class="dropdown"><button class="btn btn-xs dropdown-toggle" type="button" id="dropdownMenucolvis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical" role="img" aria-label="toggle columns visibility"></span></button><ul class="dropdown-menu" aria-labelledby="dropdownMenucolvis"><li class="dropdown-header">Toggle Columns</li><li><a class="toggle-vis" data-column="0"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Serial#</a></li><li><a class="toggle-vis" data-column="1"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Registration#</a></li><li><a class="toggle-vis" data-column="2"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Owner</a></li><li><a class="toggle-vis" data-column="3"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Status</a></li><li><a class="toggle-vis" data-column="4"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Mark</a></li></ul></div>');
 	$('a.toggle-vis').on( 'click', function (e) {
 		e.preventDefault();
 		var column = tableone.column( $(this).attr('data-column') );
@@ -147,7 +147,7 @@ $(document).ready(function(){
 	//END dashboard datatables ellipsis menu tableone
 
 	//Dashboard datatables ellipsis menu tabletwo
-    $("div.toolbartwo").html('<div class="dropdown"><button class="btn btn-xs dropdown-toggle" type="button" id="dropdownMenucolvis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical role="img" aria-label="toggle column visibility""></span></button><ul class="dropdown-menu" aria-labelledby="dropdownMenucolvis"><li class="dropdown-header">Toggle Columns</li><li><a class="toggle-vistwo" data-column="0"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Serial#</a></li><li><a class="toggle-vistwo" data-column="1"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Registration#</a></li><li><a class="toggle-vistwo" data-column="2"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Mark</a></li><li><a class="toggle-vistwo" data-column="3"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Owner</a></li><li><a class="toggle-vistwo" data-column="4"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Due Date</a></li><li><a class="toggle-vistwo" data-column="5"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Status</a></li><li><a class="toggle-vistwo" data-column="6"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Action</a></li></ul></div>');
+	$("div.toolbartwo").html('<div class="dropdown"><button class="btn btn-xs dropdown-toggle" type="button" id="dropdownMenucolvis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical role="img" aria-label="toggle column visibility""></span></button><ul class="dropdown-menu" aria-labelledby="dropdownMenucolvis"><li class="dropdown-header">Toggle Columns</li><li><a class="toggle-vistwo" data-column="0"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Serial#</a></li><li><a class="toggle-vistwo" data-column="1"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Registration#</a></li><li><a class="toggle-vistwo" data-column="2"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Mark</a></li><li><a class="toggle-vistwo" data-column="3"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Owner</a></li><li><a class="toggle-vistwo" data-column="4"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Due Date</a></li><li><a class="toggle-vistwo" data-column="5"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Status</a></li><li><a class="toggle-vistwo" data-column="6"><span class="glyphicon glyphicon-eye-open" role="img" aria-label="hide this column"></span>Action</a></li></ul></div>');
 	$('a.toggle-vistwo').on( 'click', function (e) {
 		e.preventDefault();
 		var column = tabletwo.column( $(this).attr('data-column') );
@@ -1054,7 +1054,7 @@ $(document).ready(function(){
 		$('#' + $(this).val()).show( 'fast' );
 
 		if($(this).val() == "usaffiliation"){
-            $('#user-accept-checkbox').attr("required", true);
+			$('#user-accept-checkbox').attr("required", true);
 
 			$('#canadianaffiliation').hide( 'fast' );
 		}
@@ -1134,11 +1134,11 @@ $(document).ready(function(){
 	}
 	$('a.fromcontact').click(togglecontacts);
 	//start toggle glyphicon contacts widget
-    //start toggle glyphicon dashboard toggle menu widget
-    function togglecolumnselection() {
-        $( this ).find('span.glyphicon-eye-open').toggleClass( 'visuallyhidden' ).attr('aria-label','show this column');
-    }
-    $('a.toggle-vis').click(togglecolumnselection);
+	//start toggle glyphicon dashboard toggle menu widget
+	function togglecolumnselection() {
+		$( this ).find('span.glyphicon-eye-open').toggleClass( 'visuallyhidden' ).attr('aria-label','show this column');
+	}
+	$('a.toggle-vis').click(togglecolumnselection);
 	//end toggle glyphicon contacts widget
 
 	//start close (x) fees
@@ -1201,19 +1201,19 @@ $(document).ready(function(){
 	//end show managed contacts from nav
 
 
-    //search managed contacts
-    $("#contactsearch").on("keyup", function() {
+	//search managed contacts
+	$("#contactsearch").on("keyup", function() {
 
 
-        var value = $(this).val().toLowerCase();
+		var value = $(this).val().toLowerCase();
 
 
-        $("#contactssearch tr").filter(function() {
+		$("#contactssearch tr").filter(function() {
 
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
-    //search managed contacts
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+	//search managed contacts
 
 	//edit owner accordion button toggle
 	$('#editowner button.Accordion-trigger, #reviewattorney button.Accordion-trigger').click(function() {
@@ -1222,19 +1222,19 @@ $(document).ready(function(){
 		$( this ).children('span.glyphicon-triangle-right').toggleClass('visuallyremoved');
 		$( this ).children('span.glyphicon-triangle-bottom').toggleClass('visuallyadded');
 	});	//edit owner accordion button toggle rev
-    $( document ).on('click','#editowner button.Accordion-trigger, #reviewattorney button.Accordion-trigger', function() {
-        $( this ).siblings('span.glyphicon-triangle-right').removeClass('visuallyadded').toggleClass('visuallyremoved');
-        $( this ).siblings('span.glyphicon-triangle-bottom').removeClass('visuallyremoved').toggleClass('visuallyadded');
-    });
-    $( document ).on('click','#editowner .panel-title span.glyphicon-triangle-right, #reviewattorney .panel-title span.glyphicon-triangle-right', function() {
-        $( this ).addClass('visuallyremoved').removeClass('visuallyadded');
-        $( this ).siblings( 'span.glyphicon-triangle-bottom' ).addClass('visuallyadded').removeClass('visuallyremoved');
-    });
-    $( document ).on('click','#editowner .panel-title span.glyphicon-triangle-bottom, #reviewattorney .panel-title span.glyphicon-triangle-bottom', function() {
-        $( this ).addClass('visuallyremoved').removeClass('visuallyadded');
-        $( this ).siblings( 'span.glyphicon-triangle-right' ).addClass('visuallyadded').removeClass('visuallyremoved');
-    });
-    //edit owner accordion button toggle rev
+	$( document ).on('click','#editowner button.Accordion-trigger, #reviewattorney button.Accordion-trigger', function() {
+		$( this ).siblings('span.glyphicon-triangle-right').removeClass('visuallyadded').toggleClass('visuallyremoved');
+		$( this ).siblings('span.glyphicon-triangle-bottom').removeClass('visuallyremoved').toggleClass('visuallyadded');
+	});
+	$( document ).on('click','#editowner .panel-title span.glyphicon-triangle-right, #reviewattorney .panel-title span.glyphicon-triangle-right', function() {
+		$( this ).addClass('visuallyremoved').removeClass('visuallyadded');
+		$( this ).siblings( 'span.glyphicon-triangle-bottom' ).addClass('visuallyadded').removeClass('visuallyremoved');
+	});
+	$( document ).on('click','#editowner .panel-title span.glyphicon-triangle-bottom, #reviewattorney .panel-title span.glyphicon-triangle-bottom', function() {
+		$( this ).addClass('visuallyremoved').removeClass('visuallyadded');
+		$( this ).siblings( 'span.glyphicon-triangle-right' ).addClass('visuallyadded').removeClass('visuallyremoved');
+	});
+	//edit owner accordion button toggle rev
 	//edit owner accordion button toggle
 
 	//END additional phone

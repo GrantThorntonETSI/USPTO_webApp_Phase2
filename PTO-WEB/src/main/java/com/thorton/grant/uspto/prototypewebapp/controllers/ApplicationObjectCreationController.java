@@ -952,6 +952,7 @@ public class ApplicationObjectCreationController {
                     String image_path = storageService.store(file);
 
                     baseTrademarkApplication.getTradeMark().setTrademarkImagePath("/files/"+image_path);
+                    baseTrademarkApplication.getTradeMark().setTrademarkImageFilename(file.getOriginalFilename());
                     model.addAttribute("markImagePath",baseTrademarkApplication.getTradeMark().getTrademarkImagePath());
                 }
                 catch ( StorageException ex){
