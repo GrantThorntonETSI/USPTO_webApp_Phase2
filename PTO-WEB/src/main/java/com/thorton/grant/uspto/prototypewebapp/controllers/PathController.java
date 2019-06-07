@@ -232,16 +232,19 @@ public class PathController {
     // login failure intercept
     ///////////////////////////////////
     @RequestMapping({"/passwordFailure"})
-    public String loginFailure(Model model) {
+    public String loginFailure(Model model, HttpServletRequest httpServletRequest) {
 
 
         String server_message = "Email and password combination could not be found.";
         //redirectAttributes.addFlashAttribute("message",server_message );
         model.addAttribute("message", server_message);
+        model.addAttribute("account", httpServletRequest.getParameter("username"));
+
 
         return "login";
 
     }
+
 
 
     @RequestMapping({"/aboutUs"})

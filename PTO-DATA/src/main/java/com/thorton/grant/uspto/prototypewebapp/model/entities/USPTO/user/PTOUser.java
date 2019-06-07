@@ -87,10 +87,13 @@ public class PTOUser extends UserPersonalData {
         return  newApplication;
     }
 
+
+
     public void deleteApplication( BaseTrademarkApplication application){
         myApplications.remove(application);
 
     }
+
 
 
     public Lawyer addLawyer(Lawyer newLawyer){
@@ -213,8 +216,6 @@ public class PTOUser extends UserPersonalData {
 
         for(Iterator<ManagedContact> iter = myManagedContacts.iterator(); iter.hasNext(); ) {
             //this.availableLawyers.add(new Lawyer( iter.next() ));
-
-
 
             ManagedContact current = iter.next();
             if(current.getContactType().equals("attorney")){
